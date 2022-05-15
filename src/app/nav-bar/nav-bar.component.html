@@ -1,0 +1,31 @@
+<nav>
+    <div class="logo">
+        <em><span>J</span>ob<span>C</span>oin</em>
+    </div>
+    <div class="item">
+        <!-- <button (click)="selectItemMenu(false)"> Buscar</button> -->
+        <a routerLink="/busca" routerLinkActive="active"><i class="pi pi-search" style="font-size: 1.5rem;color:white"></i> Buscar</a>
+    </div>
+    <div class="item">
+        <!-- <button (click)="selectItemMenu(true)"> Minha Área</button> -->
+        <a routerLink="/minhaArea" routerLinkActive="active"><i class="pi pi-home" style="font-size: 1.5rem;color:white"></i> Minha Área</a>
+    </div>
+    <div class="item">
+        <button (click)="changeShowDialogCalculator(true)"><i class="pi pi-money-bill" style="font-size: 1.5rem;color:white"></i> Salário Líquido</button>
+    </div>
+    <div class="item-login">
+        <div class="sub-item" *ngIf="login; else elseBlock">
+            <p>Eduardo</p>
+        </div>
+        <ng-template #elseBlock>
+            <div class="sub-item-login">
+                <button (click)="changeShowDialogLogin(true)" >Login <i class="pi pi-sign-in" style="font-size: 0.8rem;margin-left:2px"></i></button>
+            </div>
+            <div class="sub-item">
+                <a routerLink="/cadastro" routerLinkActive="active">Cadastre-se</a>
+            </div>
+        </ng-template>
+    </div>
+    <app-dialog-calculator [displayDialogCalculator]="displayDialogCalculator" (changeShowDialogCalculator)="changeShowDialogCalculator($event)"></app-dialog-calculator>
+    <app-dialog-login [displayDialogLogin]="displayDialogLogin" (changeShowDialogLogin)="changeShowDialogLogin($event)"></app-dialog-login>
+</nav>

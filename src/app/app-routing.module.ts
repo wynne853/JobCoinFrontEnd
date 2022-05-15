@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { MainComponent } from './main/main.component';
+import { MyAreaComponent } from './my-area/my-area.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path:"minhaArea",component:MyAreaComponent},
+  {path:"busca",component:MainComponent},
+  {path:"cadastro",component:RegisterUserComponent},
+  {path:"**",component:MainComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
