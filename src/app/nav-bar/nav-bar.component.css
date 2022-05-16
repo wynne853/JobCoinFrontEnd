@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+>>>>>>> edb7d5f (Ajustando algumas parte do layout)
 
 nav{
     --backgroundcolor:blueviolet;
@@ -37,9 +41,12 @@ button:hover{
     background-color: var(--backgroundcolorHover);
 }
 
+<<<<<<< HEAD
 .item{
 }
 
+=======
+>>>>>>> edb7d5f (Ajustando algumas parte do layout)
 .item:hover{
     background-color: var(--backgroundcolorHover);
 }
@@ -60,9 +67,20 @@ button:hover{
 
 .item-login div:hover{
     padding: 0px 10px;
+<<<<<<< HEAD
     background-color: rgb(140, 243, 140);
+=======
+}
+
+div.item-login .sub-item:hover {
+  background-color: var(--backgroundcolorHover);
+>>>>>>> edb7d5f (Ajustando algumas parte do layout)
 }
 
 .sub-item-login{
     border-right: 1px solid white;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> edb7d5f (Ajustando algumas parte do layout)
