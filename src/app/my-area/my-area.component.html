@@ -1,0 +1,20 @@
+<p-tabView styleClass="tabview-custom">
+    <p-tabPanel>
+        <ng-template pTemplate = "header">
+            <i class="pi pi-star-fill"></i>
+            <span>Vagas Favoritas</span>
+        </ng-template>
+        <div>
+            <app-search></app-search>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Minhas vagas">
+        <ng-template pTemplate = "header">
+            <i class="pi pi-user"></i>
+            <span>Minhas vagas</span>
+        </ng-template>
+        <div>
+            <app-search></app-search>
+        </div>
+    </p-tabPanel>
+</p-tabView>

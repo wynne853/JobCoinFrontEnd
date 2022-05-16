@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+nav{
+    --backgroundcolor:blueviolet;
+    --backgroundcolorHover:rgb(247, 117, 117);
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px 10px;
+    height: 100%;
+    width: 100%;
+    background-color: var(--backgroundcolor);
+
+}
+
+.logo{
+    font-size: 30px;
+    color: brown;
+    margin: auto 15px;
+}
+
+.logo span{
+    color:red
+}
+
+button{
+    text-decoration: none;
+    color: white;
+    background-color: var(--backgroundcolor);
+    border: none;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    height: 9vh;
+    padding: 10px;
+}
+
+button:hover{
+    background-color: var(--backgroundcolorHover);
+}
+
+.item:hover{
+    background-color: var(--backgroundcolorHover);
+}
+
+.item-login{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-left: auto;
+}
+
+.item-login div{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0px 10px;
+}
+
+.item-login div:hover{
+    padding: 0px 10px;
+}
+
+div.item-login .sub-item:hover {
+  background-color: var(--backgroundcolorHover);
+}
+
+.sub-item-login{
+    border-right: 1px solid white;
+}
