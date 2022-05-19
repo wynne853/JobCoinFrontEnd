@@ -1,0 +1,34 @@
+.title {
+    font-family: Cambria;
+    padding: 10px;
+}
+
+.form-register-user {
+    padding-left: 10px;
+    padding-bottom: 20px;
+    font-family: Cambria;
+}
+
+.form-register-user-text-box {
+    color: #777;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.form-register-user-bottom {
+    padding: 8px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.fieldset {
+    font-family: Cambria;
+}
+
+.fieldset-radio {
+    padding: 7px;
+}
+
+.fieldset-radio-label {
+    margin-right: 5px;
+}

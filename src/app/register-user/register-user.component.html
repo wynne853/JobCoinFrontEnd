@@ -1,1 +1,33 @@
-<p>Cadastre-se</p>
+<h1 class="title">Cadastro de Usuário</h1>
+<form class="form-register-user">
+    <div>
+        <label>Nome Completo</label>
+    </div>
+    <div>
+        <input class="form-register-user-text-box" type="text" placeholder="Digite seu nome">
+    </div>
+    <div>
+        <label>Email</label>
+    </div>
+    <div>
+        <input class="form-register-user-text-box" type="text" placeholder="Digite seu email">
+    </div>
+    <div>
+        <label>Senha</label>
+    </div>
+    <div>
+        <input class="form-register-user-text-box" type="password" placeholder="Digite uma senha">
+    </div>
+    <fieldset style="width: 50%;">
+        <legend>Escolha um tipo de conta</legend>
+        <div class="fieldset-radio">
+          <input class="fieldset-radio-label" type="radio" id="empregador" name="tipo-conta" value="empregador" checked>
+          <label for="huey">Empregador</label>
+        </div>
+        <div class="fieldset-radio">
+          <input class="fieldset-radio-label" type="radio" id="empregado" name="tipo-conta" value="empregado">
+          <label for="dewey">Empregado</label>
+        </div>
+    </fieldset>
+    <button class="form-register-user-bottom" type="button">Cadastrar</button>
+</form>
