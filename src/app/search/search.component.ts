@@ -1,7 +1,7 @@
+import { JobOpportunity } from 'src/interfaces/JobOpportunity';
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../interfaces/Product';
 import {PrimeNGConfig, SelectItem} from 'primeng/api';
-import { ProductServiceService } from '../../services/product-service.service';
+import { JobOpportunityService } from '../job-opportunity.service';
 
 
 @Component({
@@ -11,22 +11,22 @@ import { ProductServiceService } from '../../services/product-service.service';
 })
 export class SearchComponent implements OnInit {
 
-  products!: Product[];
-
+    jobOpportunitys!: JobOpportunity[];
+    maxAnswerRowNumber:number = JobOpportunityService.maxAnswerRowNumber;
   sortOptions!: SelectItem[];
 
   sortOrder!: number;
 
   sortField!: string;
 
-  constructor(private ProductServiceService: ProductServiceService, private primengConfig: PrimeNGConfig) { }
+  constructor(private JobOpportunityServiceInstance: JobOpportunityService, private primengConfig: PrimeNGConfig) { }
 
   ngOnInit() {
-      this.ProductServiceService.getProducts().then(data => this.products = data);
+      this.jobOpportunitys = this.JobOpportunityServiceInstance.getJobOpportunity();
 
       this.sortOptions = [
-          {label: 'Price High to Low', value: '!price'},
-          {label: 'Price Low to High', value: 'price'}
+          {label: 'Maior Salário', value: '!valorVaga'},
+          {label: 'Menor Salário', value: 'valorVaga'}
       ];
 
       this.primengConfig.ripple = true;

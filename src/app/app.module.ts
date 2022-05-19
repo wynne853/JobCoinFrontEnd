@@ -25,7 +25,10 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { DialogCalculatorComponent } from './dialog-calculator/dialog-calculator.component';
 import { DialogLoginComponent } from './dialog-login/dialog-login.component';
 import { MainComponent } from './main/main.component';
-
+import {TableModule} from 'primeng/table';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {CheckboxModule} from 'primeng/checkbox';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,10 @@ import { MainComponent } from './main/main.component';
   imports: [
     BrowserAnimationsModule,
     TabViewModule,
+    TableModule,
+    ToastModule,
+    CheckboxModule,
+    InputNumberModule,
     ButtonModule,
     BrowserModule,
     AppRoutingModule,

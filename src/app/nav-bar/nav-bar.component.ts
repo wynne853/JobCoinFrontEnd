@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { CredentialService } from '../credential.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  public login = false;
+  public loginStatus?:boolean;
 
   public displayDialogLogin:boolean = false;
   public displayDialogCalculator:boolean = false; 
@@ -18,6 +19,10 @@ export class NavBarComponent implements OnInit {
   
   public changeShowDialogLogin(status:boolean) {
     this.displayDialogLogin = status;
+  }
+
+  constructor(private CredentialServiceInstance:CredentialService) {
+    this.loginStatus = this.CredentialServiceInstance.getAutenticationStatus();
   }
 
   ngOnInit() {
