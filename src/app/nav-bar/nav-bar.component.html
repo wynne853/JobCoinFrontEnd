@@ -2,18 +2,6 @@
     <div class="logo">
         <em><span>J</span>ob<span>C</span>oin</em>
     </div>
-<<<<<<< HEAD
-    <div class="item">
-        <!-- <button (click)="selectItemMenu(false)"> Buscar</button> -->
-        <a routerLink="/busca" routerLinkActive="active"><i class="pi pi-search" style="font-size: 1.5rem;color:white"></i> Buscar</a>
-    </div>
-    <div class="item">
-        <!-- <button (click)="selectItemMenu(true)"> Minha Área</button> -->
-        <a routerLink="/minhaArea" routerLinkActive="active"><i class="pi pi-home" style="font-size: 1.5rem;color:white"></i> Minha Área</a>
-    </div>
-    <div class="item">
-        <button (click)="changeShowDialogCalculator(true)"><i class="pi pi-money-bill" style="font-size: 1.5rem;color:white"></i> Salário Líquido</button>
-=======
     <div style="display: flex; justify-content: center; align-items: center; padding-left: 10px; padding-right: 10px;" class="item">
         <!-- <button (click)="selectItemMenu(false)"> Buscar</button> -->
         <a style="text-decoration: none; color: white;" routerLink="/busca" routerLinkActive="active"><i class="pi pi-search" style="font-size: 1.5rem;color:white;"></i> Buscar</a>
@@ -24,7 +12,6 @@
     </div>
     <div class="item">
         <button (click)="changeShowDialogCalculator(true)"><i class="pi pi-money-bill" style="font-size: 1.5rem;color:white; margin-top: 5px;"></i><span style="font-size: 1rem;color:white;"> Salário Líquido</span></button>
->>>>>>> edb7d5f (Ajustando algumas parte do layout)
     </div>
     <div class="item-login">
         <div class="sub-item" *ngIf="loginStatus; else elseBlock">
@@ -35,18 +22,10 @@
                 <button (click)="changeShowDialogLogin(true)" >Login <i class="pi pi-sign-in" style="font-size: 0.8rem;margin-left:2px"></i></button>
             </div>
             <div class="sub-item">
-<<<<<<< HEAD
-                <a routerLink="/cadastro" routerLinkActive="active">Cadastre-se</a>
-=======
                 <a routerLink="/cadastro" routerLinkActive="active" style="color: white; text-decoration: none;">Cadastre-se</a>
->>>>>>> edb7d5f (Ajustando algumas parte do layout)
             </div>
         </ng-template>
     </div>
     <app-dialog-calculator [displayDialogCalculator]="displayDialogCalculator" (changeShowDialogCalculator)="changeShowDialogCalculator($event)"></app-dialog-calculator>
     <app-dialog-login [displayDialogLogin]="displayDialogLogin" (changeShowDialogLogin)="changeShowDialogLogin($event)"></app-dialog-login>
-<<<<<<< HEAD
 </nav>
-=======
-</nav>
->>>>>>> edb7d5f (Ajustando algumas parte do layout)
