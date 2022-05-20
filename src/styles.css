@@ -1,11 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-<<<<<<< HEAD
-*{
-    box-sizing: border-box;
-    padding: 0px;
-    margin: 0px;
-}
-=======
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 * {
@@ -17,4 +10,3 @@
     -moz-appearance: none;
     appearance: none;
 }
->>>>>>> edb7d5f (Ajustando algumas parte do layout)
