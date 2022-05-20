@@ -8,8 +8,8 @@ import { CredentialService } from '../credential.service';
 })
 export class NavBarComponent implements OnInit {
 
-  public loginStatus?:boolean;
-
+  public authenticationStatus?:boolean;
+  
   public displayDialogLogin:boolean = false;
   public displayDialogCalculator:boolean = false; 
 
@@ -21,12 +21,15 @@ export class NavBarComponent implements OnInit {
     this.displayDialogLogin = status;
   }
 
-  constructor(private CredentialServiceInstance:CredentialService) {
-    this.loginStatus = this.CredentialServiceInstance.getAutenticationStatus();
+  public changeAuthenticationStatus(newAuthenticationStatus:boolean){
+    this.authenticationStatus = newAuthenticationStatus;
   }
 
+  constructor(private CredentialServiceInstance:CredentialService) {
+    this.authenticationStatus = this.CredentialServiceInstance.getAuthenticationStatus();
+  }
+  
   ngOnInit() {
-      
   }
 
 }

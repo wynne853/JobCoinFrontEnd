@@ -12,26 +12,26 @@ export class CredentialService {
   
   private URL = `${environment.host}/v1/login`;
 
-  private autentication:Authenticate = { autenticado:false };
+  private authentication:Authenticate = { autenticado:false };
 
 
   async login(email:String,password:String){
     
     return axios.post(this.URL,{email,senha:password}).then(response => {
-      this.autentication = response.data;
-      return this.autentication.autenticado;
+      this.authentication = response.data;
+      return this.authentication.autenticado;
     }).catch( error =>{
-      this.autentication = { autenticado:false };
+      this.authentication = { autenticado:false };
     });
 
   }
 
-  getAutentication(){
-    return this.autentication;
+  getAuthentication(){
+    return this.authentication;
   }
 
-  getAutenticationStatus(){
-    return this.autentication.autenticado;
+  getAuthenticationStatus(){
+    return this.authentication.autenticado;
   }
   
 }

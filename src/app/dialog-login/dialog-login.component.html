@@ -4,9 +4,12 @@
         <input placeholder="E-mail" type="text" pInputText [(ngModel)]="userEmail" >        
         <input placeholder="Password" type="password" pInputText [(ngModel)]="userPassword" >        
     </div>
+    <div class="spinner" [style]="{display:spinnerLoading?'block':'none'}" >
+        <i class="pi pi-spin pi-spinner" style="font-size: 2rem;"></i>
+    </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="login()" label="Logar" class="p-button-text"></p-button>
-        <p-button icon="pi pi-times" (click)="closeDialog()" label="Cancelar" class="p-button-text"></p-button>
+        <p-button icon="pi pi-check" [disabled]="spinnerLoading" (click)="login()" label="Logar" class="p-button-text"></p-button>
+        <p-button icon="pi pi-times" [disabled]="spinnerLoading" (click)="closeDialog()" label="Cancelar" class="p-button-text"></p-button>
     </ng-template>
     <p-toast position="top-left"></p-toast>
 </p-dialog>

@@ -1,6 +1,5 @@
 import { CredentialService } from './../credential.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Authenticate } from 'src/interfaces/Authenticate';
 import {MessageService} from 'primeng/api';
 @Component({
   selector: 'app-dialog-login',
@@ -12,21 +11,31 @@ export class DialogLoginComponent implements OnInit {
 
   @Input() displayDialogLogin!:boolean;
   @Output() changeShowDialogLogin = new EventEmitter<boolean>();
+  @Output() changeAuthenticationStatus = new EventEmitter<boolean>();
   
+  public spinnerLoading = false;
   public userEmail:String = "";
   public userPassword:String = "";
 
   closeDialog(){
     this.changeShowDialogLogin.emit(false);
   }
-
+  
   login(){
+    this.spinnerLoading = true;
+    
     this.CredentialServiceInstance.login(this.userEmail,this.userPassword).then(response =>{
-      console.log(response);
-        this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
-        // this.closeDialog();
-      }).catch(error =>{
-        this.messageService.add({severity:'error', summary: 'error', detail: 'Message Content'});
+      
+      this.spinnerLoading = false;
+      if(this.CredentialServiceInstance.getAuthenticationStatus()){
+        console.log(this.CredentialServiceInstance.getAuthentication());
+        this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Logi Efetuado com sucesso'});
+        this.changeAuthenticationStatus.emit(true);
+        this.closeDialog();
+      }else{
+        this.messageService.add({severity:'error', summary: 'Erro', detail: 'Erro ao tentar Logar'});
+      }
+      
       });
   }
 

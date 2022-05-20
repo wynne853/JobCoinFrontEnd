@@ -14,7 +14,7 @@
         <button (click)="changeShowDialogCalculator(true)"><i class="pi pi-money-bill" style="font-size: 1.5rem;color:white; margin-top: 5px;"></i><span style="font-size: 1rem;color:white;"> Salário Líquido</span></button>
     </div>
     <div class="item-login">
-        <div class="sub-item" *ngIf="loginStatus; else elseBlock">
+        <div class="sub-item" *ngIf="authenticationStatus; else elseBlock">
             <p>Eduardo</p>
         </div>
         <ng-template #elseBlock>
@@ -27,5 +27,5 @@
         </ng-template>
     </div>
     <app-dialog-calculator [displayDialogCalculator]="displayDialogCalculator" (changeShowDialogCalculator)="changeShowDialogCalculator($event)"></app-dialog-calculator>
-    <app-dialog-login [displayDialogLogin]="displayDialogLogin" (changeShowDialogLogin)="changeShowDialogLogin($event)"></app-dialog-login>
+    <app-dialog-login (changeAuthenticationStatus)="changeAuthenticationStatus($event)" [displayDialogLogin]="displayDialogLogin" (changeShowDialogLogin)="changeShowDialogLogin($event)"></app-dialog-login>
 </nav>
