@@ -1,0 +1,22 @@
+[
+    {
+        "finalValue":1903.98,
+        "percent":0
+    },
+    {  
+        "finalValue":2826.65, 
+        "percent": 0.075 
+    },
+    { 
+        "finalValue":3751.05, 
+        "percent": 0.15 
+    },
+    { 
+        "finalValue":4664.68, 
+        "percent": 0.225 
+    },
+    { 
+        "finalValue":0, 
+        "percent":0.275
+    }
+]

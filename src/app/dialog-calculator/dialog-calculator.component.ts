@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
-
+import { SalaryCalculatorService } from '../salary-calculator.service';
 @Component({
   selector: 'app-dialog-calculator',
   templateUrl: './dialog-calculator.component.html',
@@ -10,30 +10,24 @@ export class DialogCalculatorComponent implements OnInit {
 
   @Input() public displayDialogCalculator!: boolean;
   @Output() changeShowDialogCalculator = new EventEmitter<boolean>();
-  public salario!:number;
-  public usingINSS!:boolean;
-  public dolarValue:String = "4,97";
 
-  public tables:any[] =[
-    {
-      description:"value",
-      value:"R$ 10000",
-      procent:"-"
-    },{
-      description:"INSS",
-      value:"R$ 800",
-      procent:"8%"
-    },{
-      description:"IR",
-      value:"R$ 2750",
-      procent:"27,5%"
-    },{
-      description:"Salário líquido",
-      value:"R$ 6450",
-      procent:"-"
-    }];
+  public salaryInDollar!:number;
+  public usingINSS = false;
+  public dolarValue:String = "";
 
-  constructor() { }
+  public tableSalary:any[] =[];
+
+  constructor(private SalaryCalculatorServiceInstance:SalaryCalculatorService) { 
+    SalaryCalculatorServiceInstance.getCurrencyDollarValue().then(response =>{
+      this.dolarValue = response;
+    });
+  }
+
+  calculateNetSalary(){
+    this.SalaryCalculatorServiceInstance.calculateNetSalary(this.salaryInDollar,this.usingINSS).then(response => {
+      this.tableSalary = response;
+    });
+  }
 
   closeDialog(){
     this.changeShowDialogCalculator.emit(false);

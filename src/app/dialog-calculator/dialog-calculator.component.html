@@ -1,13 +1,13 @@
 <p-dialog header="Calculadora" [(visible)]="displayDialogCalculator" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
     [draggable]="false" [resizable]="false" [closable]="false">
     <div class="div-input">
-        <p-inputNumber placeholder="Salário Bruto" [(ngModel)]="salario" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
-        <p-checkbox label="INSS" value="true" [(ngModel)]="usingINSS"></p-checkbox>
-        <p-button icon="pi pi-money-bill" label="Calcular" class="p-button-text"></p-button>
+        <p-inputNumber placeholder="Salário Bruto" [(ngModel)]="salaryInDollar" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+        <p-checkbox label="INSS" [binary]="true" [(ngModel)]="usingINSS"></p-checkbox>
+        <p-button icon="pi pi-money-bill" label="Calcular" class="p-button-text" (onClick)="calculateNetSalary()"></p-button>
     </div>
     <p>Cotação Atual do Dólar: R$ {{dolarValue}}</p>
-    <div class="div-table">
-        <p-table [value]="tables" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+    <div class="div-table" [style]="{display: tableSalary.length ? 'table' : 'none'}">
+        <p-table [value]="tableSalary" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
             <ng-template pTemplate="caption">
                 Resultado do Cálculo
             </ng-template>
@@ -18,11 +18,11 @@
                     <th>Percentual</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-product>
+            <ng-template pTemplate="body" let-itemTableSalary>
                 <tr>
-                    <td>{{product.description}}</td>
-                    <td>{{product.value}}</td>
-                    <td>{{product.procent}}</td>
+                    <td>{{itemTableSalary.description}}</td>
+                    <td>{{itemTableSalary.value}}</td>
+                    <td>{{itemTableSalary.procent}}</td>
                 </tr>
             </ng-template>
         </p-table>

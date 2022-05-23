@@ -1,6 +1,8 @@
 import { CredentialService } from './../credential.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {MessageService} from 'primeng/api';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-dialog-login',
   templateUrl: './dialog-login.component.html',
@@ -32,6 +34,7 @@ export class DialogLoginComponent implements OnInit {
         this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Logi Efetuado com sucesso'});
         this.changeAuthenticationStatus.emit(true);
         this.closeDialog();
+        this.RouterInstance.navigate([""]);
       }else{
         this.messageService.add({severity:'error', summary: 'Erro', detail: 'Erro ao tentar Logar'});
       }
@@ -39,7 +42,7 @@ export class DialogLoginComponent implements OnInit {
       });
   }
 
-  constructor(private CredentialServiceInstance:CredentialService,private messageService: MessageService) { }
+  constructor(private RouterInstance:Router,private CredentialServiceInstance:CredentialService,private messageService: MessageService) { }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,8 @@
 export interface Authenticate{
-    token?:String;
+    token?:string;
+    refreshToken?:String
     autenticado: boolean;
-    dataCriacao?:String;
-    dataExpiracao?:String;
+    dataCriacao?:string;
+    dataExpiracao?:string;
+    userInformation?:any;
 }
