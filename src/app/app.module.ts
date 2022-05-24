@@ -29,6 +29,8 @@ import {TableModule} from 'primeng/table';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ToastModule} from 'primeng/toast';
+import {PasswordModule} from 'primeng/password';
+import {RadioButtonModule} from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import {ToastModule} from 'primeng/toast';
     BrowserAnimationsModule,
     TabViewModule,
     TableModule,
+    PasswordModule,
     ToastModule,
+    RadioButtonModule,
     CheckboxModule,
     InputNumberModule,
     ButtonModule,

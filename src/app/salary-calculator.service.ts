@@ -18,7 +18,7 @@ export class SalaryCalculatorService {
       this.currentDollarValue = response.data.USDBRL.ask;
       return response.data.USDBRL.ask;
     }).catch(error => {
-      console.log(error.message);
+      console.error(error.message);
     });
   }
 

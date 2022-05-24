@@ -12,14 +12,15 @@ export class CredentialService {
 
   constructor() { }
   
-  private URL = `${environment.host}/v1/login`;
+  private URLLogin = `${environment.host}/v1/login`;
+  private URLCreateNewUser = `${environment.host}/v1/login`;
 
   private authentication:Authenticate = { autenticado:false };
 
 
-  async login(email:String,password:String){
+  login(email:String,password:String){
     
-    return axios.post(this.URL,{email,senha:password}).then(response => {
+    return axios.post(this.URLLogin,{email,senha:password}).then(response => {
       this.authentication = response.data.token;
       this.authentication.refreshToken = response.data.refreshToken;
       this.authentication.userInformation = this.getUserInformation(this.authentication.token!);
@@ -45,6 +46,14 @@ export class CredentialService {
     } catch(Error) {
       return null;
     }
+  }
+
+  createNewUser(email:string,password:string,name:string,accountType:string){
+    return axios.post(this.URLCreateNewUser,{email,senha:password,nome:name,perfilId:accountType}).then(response => {
+      console.log(response);
+    }).catch( error =>{
+      console.error(error.message);
+    });
   }
   
 }
