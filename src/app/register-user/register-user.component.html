@@ -13,12 +13,12 @@
         <label for="password-input">Password</label>
     </span>
     <div>
-        <p-radioButton value="Chicago" [(ngModel)]="accountType" inputId="empregador-input"></p-radioButton>
+        <p-radioButton value="77bf0b52-5745-4dbd-8854-68f39dc5cb91" [(ngModel)]="accountType" inputId="empregador-input"></p-radioButton>
         <label for="empregador-input">Empregador</label>
     </div>
     <div>
-        <p-radioButton value="Los Angeles" [(ngModel)]="accountType" inputId="empregado-input"></p-radioButton>
+        <p-radioButton value="57a946a6-c9d5-4f65-82b6-7cdda2bec297" [(ngModel)]="accountType" inputId="empregado-input"></p-radioButton>
         <label for="empregado-input">Empregado</label>
     </div>
-    <button pButton pRipple type="button" label="Cadastrar"></button>
+    <button pButton pRipple type="button" label="Cadastrar" (click)="createNewUser()"></button>
 </div>

@@ -13,7 +13,7 @@ export class CredentialService {
   constructor() { }
   
   private URLLogin = `${environment.host}/v1/login`;
-  private URLCreateNewUser = `${environment.host}/v1/login`;
+  private URLCreateNewUser = `${environment.host}/v1/usuarios`;
 
   private authentication:Authenticate = { autenticado:false };
 
@@ -24,7 +24,6 @@ export class CredentialService {
       this.authentication = response.data.token;
       this.authentication.refreshToken = response.data.refreshToken;
       this.authentication.userInformation = this.getUserInformation(this.authentication.token!);
-      console.log(this.authentication);
       return this.authentication.autenticado;
     }).catch( error =>{
       this.authentication = { autenticado:false };
@@ -49,11 +48,7 @@ export class CredentialService {
   }
 
   createNewUser(email:string,password:string,name:string,accountType:string){
-    return axios.post(this.URLCreateNewUser,{email,senha:password,nome:name,perfilId:accountType}).then(response => {
-      console.log(response);
-    }).catch( error =>{
-      console.error(error.message);
-    });
+    return axios.post(this.URLCreateNewUser,{email,senha:password,nome:name,idPerfil:accountType});
   }
   
 }

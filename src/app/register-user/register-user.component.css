@@ -2,6 +2,14 @@
     font-family: Cambria;
     padding: 10px;
 }
+.item{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding-left: 10px; 
+    padding-right: 10px; 
+    text-decoration: none;
+}
 
 .form-register-user {
     padding-left: 10px;

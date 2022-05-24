@@ -8,21 +8,23 @@ import { CredentialService } from '../credential.service';
 })
 export class NavBarComponent implements OnInit {
 
-  public authenticationStatus?:boolean;
-  
-  public displayDialogLogin:boolean = false;
-  public displayDialogCalculator:boolean = false; 
+  authenticationStatus?:boolean;
+  userName?:String;
+  displayDialogLogin:boolean = false;
+  displayDialogCalculator:boolean = false;
 
-  public changeShowDialogCalculator(status:boolean) {
+
+  changeShowDialogCalculator(status:boolean) {
     this.displayDialogCalculator = status;
   }
   
-  public changeShowDialogLogin(status:boolean) {
+  changeShowDialogLogin(status:boolean) {
     this.displayDialogLogin = status;
   }
 
-  public changeAuthenticationStatus(newAuthenticationStatus:boolean){
+  changeAuthenticationStatus(newAuthenticationStatus:boolean){
     this.authenticationStatus = newAuthenticationStatus;
+    this.userName = this.CredentialServiceInstance.getAuthentication().userInformation.email;
   }
 
   constructor(private CredentialServiceInstance:CredentialService) {

@@ -18,7 +18,7 @@ export class RegisterUserComponent implements OnInit {
 
   createNewUser(){
     this.CredentialServiceInstance.createNewUser(this.email,this.password,this.name,this.accountType).then(response =>{
-      if(this.CredentialServiceInstance.getAuthenticationStatus()){
+      if(response.statusText === "Created"){
         this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Usuário cadastrado com sucesso'});
       }else{
         this.messageService.add({severity:'error', summary: 'Erro', detail: 'Erro cadastra novo usuário'});
