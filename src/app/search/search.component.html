@@ -4,55 +4,32 @@
         <ng-template pTemplate="header">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
                 <p-dropdown [options]="sortOptions" placeholder="Ordenar por salário" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
-                <span class="p-input-icon-left p-mb-5 p-mb-md-0">
-                    <i class="pi pi-search"></i>
-                    <input type="search" pInputText placeholder="Palavra chave" >
+                <span class="p-input-icon-left p-mb-5 p-mb-md-0" style="padding-left: 10px; padding-right: 10px;">
+                    <i style="padding-left: 10px;" class="pi pi-search"></i>
+                    <input type="search" pInputText placeholder="Palavra chave">
                 </span>
-                <p-button icon="pi pi-search" label="Buscar"></p-button>
+                <!-- <p-button icon="pi pi-search" label="Buscar"></p-button> -->
+                <button pButton type="button" icon="pi pi-search" label="Buscar" class="p-button-help" class="p-button-help"></button>
                 <div style="margin-top: 10px;">
-                  <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                  <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
                 </div>
             </div>
         </ng-template>
 
-        <ng-template let-jobOpportunity pTemplate="listItem">
-            <div class="p-col-12 mb-5">
-                <div class="product-list-item">
-                    <div class="product-list-detail">
-                        <div class="product-name">{{jobOpportunity.nomeVaga}}</div>
-                        <div class="product-description">{{jobOpportunity.descricaoVaga}}</div>
-                    </div>
-                    <div class="product-list-action">
-                        <span class="product-price">${{jobOpportunity.valorVaga}}</span>
-                        <p-button icon="pi pi-star"></p-button>
-                    </div>
+
+
+        <ng-template let-jobOpportunity pTemplate="gridItem">
+            <p-card header="{{jobOpportunity.nomeVaga}}" subheader="${{jobOpportunity.valorVaga}}" [style]="{maxWidth: '300px', padding: '30px', margin: '20px', border: '1px solid', color:'blueviolet'}" styleClass="p-card-shadow">
+                <div style="margin-top: 20px;">
+                  <p>{{jobOpportunity.descricaoVaga}}</p>
                 </div>
-            </div>
+                <ng-template pTemplate="footer">
+                  <div style="display:flex; justify-content: end;">
+                    <!-- <p-button icon="pi pi-star"></p-button> -->
+                    <button pButton type="button" icon="pi pi-star" class="p-button-help" class="p-button-help"></button>
+                  </div>
+                </ng-template>
+            </p-card>
         </ng-template>
-
-        <div style="display: flex; justify-content: center; align-items: center;">
-          <ng-template let-product pTemplate="gridItem">
-              <div class="p-col-12 p-md-4">
-                <div class="product-grid-item card">
-                  <div class="product-grid-item-top">
-                    <div>
-                      <i class="pi pi-tag product-category-icon"></i>
-                      <span class="product-category">{{product.category}}</span>
-                    </div>
-                  </div>
-                  <div class="product-grid-item-content">
-                    <div class="product-name">{{product.name}}</div>
-                    <div class="product-description">{{product.description}}</div>
-                    <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
-                  </div>
-                      <div class="product-grid-item-bottom">
-                          <span class="product-price">${{product.price}}</span>
-                          <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
-                      </div>
-                  </div>
-              </div>
-
-          </ng-template>
-        </div>
     </p-dataView>
 </section>

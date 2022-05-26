@@ -1,15 +1,35 @@
-<p-dialog header="Login" [(visible)]="displayDialogLogin" [modal]="true" [style]="{width: '300px'}" [baseZIndex]="10000"
+<p-dialog [(visible)]="displayDialogLogin" [modal]="true" [style]="{width: '300px', color: 'blueviolet', background: 'purple'}" [baseZIndex]="10000"
     [draggable]="false" [resizable]="false" [closable]="false">
-    <div class="div-input">
-        <input placeholder="E-mail" type="text" pInputText [(ngModel)]="userEmail" >        
-        <input placeholder="Password" type="password" pInputText [(ngModel)]="userPassword" >        
+    <div class="logo" style="font-size: 24px; display: flex; justify-content: center; background: purple; width: 100%;">
+      <em style="color: white;"><span style="color: yellow;">J</span>ob<span style="color: yellow;">C</span>oin</em>
     </div>
+    <div class="div-input" style=" margin-top: 20px; margin-bottom: 30px;">
+      <div>
+        <span class="p-float-label">
+          <input id="email-input" [(ngModel)]="userEmail" type="text" pInputText style="width: 222px;">
+          <label for="email-input">Email</label>
+        </span>
+      </div>
+      <div>
+        <span class="p-float-label" style="margin-bottom: -10px;">
+          <p-password id="password-input" [(ngModel)]="userPassword" [toggleMask]="true" [feedback]="false"></p-password>
+          <label for="password-input">Password</label>
+        </span>
+      </div>
+    </div>
+    <!-- <div style="text-decoration: underline;">
+      <a href="#">
+        <span>Esqueceu sua senha ?</span>
+      </a>
+    </div> -->
     <div class="spinner" [style]="{display:spinnerLoading?'block':'none'}" >
         <i class="pi pi-spin pi-spinner" style="font-size: 2rem;"></i>
     </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" [disabled]="spinnerLoading" (click)="login()" label="Logar" class="p-button-text"></p-button>
-        <p-button icon="pi pi-times" [disabled]="spinnerLoading" (click)="closeDialog()" label="Cancelar" class="p-button-text"></p-button>
+        <!-- <p-button icon="pi pi-check" [disabled]="spinnerLoading" (click)="login()" label="Logar" class="p-button-help"></p-button> -->
+        <button pButton type="button" icon="pi pi-check" [disabled]="spinnerLoading" (click)="login()" label="Logar" class="p-button-help" class="p-button-help"></button>
+        <button pButton type="button" icon="pi pi-check" [disabled]="spinnerLoading" (click)="closeDialog()" label="Cancelar" class="p-button-help" class="p-button-help"></button>
+        <!-- <p-button icon="pi pi-times" [disabled]="spinnerLoading" (click)="closeDialog()" label="Cancelar" class="p-button-help"></p-button> -->
     </ng-template>
     <p-toast position="top-left"></p-toast>
 </p-dialog>

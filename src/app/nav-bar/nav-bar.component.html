@@ -1,23 +1,23 @@
 <nav>
     <div class="logo">
-        <em><span>J</span>ob<span>C</span>oin</em>
+        <em style="color: white;"><span style="color: yellow;">J</span>ob<span style="color: yellow;">C</span>oin</em>
     </div>
-    <div class="item">
+    <div class="item" style="padding: 10px; display: flex; justify-content: center; align-items: center;">
         <a style="text-decoration: none; color: white;" routerLink="/busca" routerLinkActive="active"><i class="pi pi-search" style="font-size: 1.5rem;color:white;"></i> Buscar</a>
     </div>
-    <div [style]="{display: userName ? 'flex' : 'none'}" class="item">
+    <div [style]="{display: userName ? 'flex' : 'none'}" class="item" style="padding: 10px; display: flex; justify-content: center; align-items: center;">
         <a style="text-decoration: none; color: white;" routerLink="/minhaArea" routerLinkActive="active"><i class="pi pi-home" style="font-size: 1.5rem;color:white"></i> Minha Área</a>
     </div>
     <div class="item">
-        <button (click)="changeShowDialogCalculator(true)"><i class="pi pi-money-bill" style="font-size: 1.5rem;color:white; margin-top: 5px;"></i><span style="font-size: 1rem;color:white;"> Salário Líquido</span></button>
+        <button (click)="changeShowDialogCalculator(true)"><i class="pi pi-money-bill" style="font-size: 1.5rem;color:white; margin-top: 5px;"></i><span style="font-size: 1rem;color:white; cursor: pointer;"> Salário Líquido</span></button>
     </div>
     <div class="item-login">
         <div class="sub-item" *ngIf="authenticationStatus; else elseBlock">
-            <p>{{userName}}</p>
+            <p style="color: white;">{{userName}}</p>
         </div>
         <ng-template #elseBlock>
             <div class="sub-item-login">
-                <button (click)="changeShowDialogLogin(true)" >Login <i class="pi pi-sign-in" style="font-size: 0.8rem;margin-left:2px"></i></button>
+                <button (click)="changeShowDialogLogin(true)" style="cursor: pointer; font-size: 16px;">Login <i class="pi pi-sign-in" style="font-size: 0.8rem;margin-left:2px"></i></button>
             </div>
             <div class="sub-item">
                 <a routerLink="/cadastro" routerLinkActive="active" style="color: white; text-decoration: none;">Cadastre-se</a>

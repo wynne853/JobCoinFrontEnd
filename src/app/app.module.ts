@@ -31,6 +31,7 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {ToastModule} from 'primeng/toast';
 import {PasswordModule} from 'primeng/password';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import {CardModule} from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     InputTextModule,
     RippleModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [HomeComponent]

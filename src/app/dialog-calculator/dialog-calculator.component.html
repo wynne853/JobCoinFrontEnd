@@ -1,11 +1,17 @@
-<p-dialog header="Calculadora" [(visible)]="displayDialogCalculator" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+<p-dialog header="Calculadora" [(visible)]="displayDialogCalculator" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000"
     [draggable]="false" [resizable]="false" [closable]="false">
-    <div class="div-input">
+    <div class="div-input" style="display: flex; align-items: center; padding: 10px;">
+      <div>
         <p-inputNumber placeholder="Salário Bruto" [(ngModel)]="salaryInDollar" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+      </div>
+      <div style="display: flex; align-items: center; padding-left: 10px;">
         <p-checkbox label="INSS" [binary]="true" [(ngModel)]="usingINSS"></p-checkbox>
-        <p-button icon="pi pi-money-bill" label="Calcular" class="p-button-text" (onClick)="calculateNetSalary()"></p-button>
-    </div>
-    <p>Cotação Atual do Dólar: R$ {{dolarValue}}</p>
+      </div>
+      <div style="display: flex; align-items: center; padding-left: 10px;">
+        <button pButton type="button" icon="pi pi-money-bill" label="Calcular" class="p-button-help" class="p-button-help" (click)="calculateNetSalary()"></button>
+      </div>
+      </div>
+    <p style="display: flex; align-items: center; padding: 10px;">Cotação Atual do Dólar: R$ {{dolarValue}}</p>
     <div class="div-table" [style]="{display: tableSalary.length ? 'table' : 'none'}">
         <p-table [value]="tableSalary" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
             <ng-template pTemplate="caption">
@@ -28,6 +34,7 @@
         </p-table>
     </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-times" (click)="closeDialog()" label="Finalizar" class="p-button-text"></p-button>
+        <!-- <p-button icon="pi pi-times" (click)="closeDialog()" label="Finalizar" class="p-button-text"></p-button> -->
+        <button pButton type="button" icon="pi pi-times" label="Finalizar" class="p-button-help" class="p-button-help" (click)="closeDialog()"></button>
     </ng-template>
 </p-dialog>
