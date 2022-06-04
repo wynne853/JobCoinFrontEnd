@@ -87,13 +87,37 @@ export class SearchComponent implements OnInit {
   
   myFavoriteJobSearch(){
     this.JobOpportunityServiceInstance.getMyfavoriteJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan).then(response =>{
-        console.log(response);
+        
         if(response.status === 200){
               this.jobOpportunitys = response.data.itensPagina;
               console.log(this.jobOpportunitys)
         }else{
 
         }
+    }).catch(error =>{
+
+    });
+  }
+
+  favoriteJobOpportunity(idJobOpportunity:number){
+    this.JobOpportunityServiceInstance.favoriteJobOpportunity(idJobOpportunity).then(response =>{
+        if(response.status === 200){
+            console.log(response.data)
+      }else{
+
+      }
+    }).catch(error =>{
+
+    });
+  }
+
+  disfavorJobOpportunity(idJobOpportunity:number){
+    this.JobOpportunityServiceInstance.disfavorJobOpportunity(idJobOpportunity).then(response =>{
+        if(response.status === 200){
+            console.log(response.data)
+      }else{
+
+      }
     }).catch(error =>{
 
     });
