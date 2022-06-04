@@ -21,7 +21,6 @@ export class CredentialService {
     let stringAutentication = localStorage.getItem("autentication");
     if(stringAutentication){
       this.authentication = JSON.parse(stringAutentication);
-      console.log(this.authentication)
     }
   }
 

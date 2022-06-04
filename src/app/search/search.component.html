@@ -21,7 +21,7 @@
                     </div>
                     <ng-template pTemplate="footer">
                         <div style="display:flex; justify-content: end;">
-                            <button *ngIf="authenticationStatus" pButton type="button" icon="pi pi-star" class="p-button-help" class="p-button-help" (click)="favoriteJobOpportunity(jobOpportunity.idVaga)" ></button>
+                            <button *ngIf="favoriteButton" pButton type="button" icon="{{selectIconFavoriteButton(jobOpportunity.usuarioAtualFavoritouVaga || false)}}" class="p-button-help" class="p-button-help" (click)="favoriteJobOpportunity(jobOpportunity.idVaga)" ></button>
                         </div>
                     </ng-template>
                 </p-card>

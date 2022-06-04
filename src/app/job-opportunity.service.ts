@@ -41,6 +41,9 @@ export class JobOpportunityService {
         "palavraChave":filterDescription,
         "valorMaiorQue":filterValueBiggerThan,
         "valorMenorQue":filterValueLessThan 
+      },
+      headers:{
+        "Authorization": this.requestToken
       }
    });
   }

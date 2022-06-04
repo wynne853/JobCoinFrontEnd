@@ -20,6 +20,7 @@ export class SearchComponent implements OnInit {
     // s - busca geral | f - busca as favoritas | m - busca minhas vagas
     @Input() searchType:string = "s";
     sortOptions!: SelectItem[];
+    favoriteButton:boolean = false;
     filterValueBiggerThan!:number;
     filterValueLessThan!:number
     filterKeyWord!:string;
@@ -33,7 +34,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.authenticationStatus = this.CredentialServiceInstance.getAuthenticationStatus();
     this.search();
-
+    this.showFavoriteButton();
       this.sortOptions = [
           {label: 'Maior Salário', value: '!valorVaga'},
           {label: 'Menor Salário', value: 'valorVaga'}
@@ -46,20 +47,53 @@ export class SearchComponent implements OnInit {
       this.displayDialogAddJob = statusDialogAddJob;
   }
 
+    showFavoriteButton(){
+        if(!this.authenticationStatus){
+            this.favoriteButton = false;
+        }else{
+            switch (this.searchType) {
+                case "f": 
+                    this.favoriteButton = true;
+                    break;
+                case "m": 
+                    this.favoriteButton = false;
+                    break;
+                default:
+                    this.favoriteButton = true;
+                    break;
+            }
+        }
+    }
+
+    selectIconFavoriteButton(usuarioAtualFavoritouVaga:boolean){
+        let starFill = false;
+        if(this.searchType === 'f'){
+            starFill = true;
+        }else{
+            starFill = usuarioAtualFavoritouVaga;
+        }
+
+        return starFill ?'pi pi-star-fill' : 'pi pi-star';
+    }
+
   search(){
       switch (this.searchType) {
-          case "f": this.myFavoriteJobSearch();
-              break;
-          case "m": this.myJobSearch();
-              break;
-          default: this.generalSearch();
-              break;
+          case "f": 
+                this.myFavoriteJobSearch();
+            break;
+          case "m": 
+                this.myJobSearch();
+            break;
+          default: 
+                this.generalSearch();
+            break;
       }
   }
 
+  
+
   generalSearch(){
     this.JobOpportunityServiceInstance.getJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan).then(response =>{
-        console.log(response);
         if(response.status === 200){
               this.jobOpportunitys = response.data.itensPagina;
               console.log(this.jobOpportunitys)
@@ -73,7 +107,6 @@ export class SearchComponent implements OnInit {
   
   myJobSearch(){
     this.JobOpportunityServiceInstance.getMyJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan).then(response =>{
-        console.log(response);
         if(response.status === 200){
               this.jobOpportunitys = response.data.itensPagina;
               console.log(this.jobOpportunitys)

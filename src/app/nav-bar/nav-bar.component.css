@@ -2,7 +2,7 @@
 
 nav{
     --backgroundcolor:blueviolet;
-    --backgroundcolorHover:rgb(247, 117, 117);
+    --backgroundcolorHover:#a255e9;
     display: flex;
     justify-content: flex-start;
     padding: 5px 10px;
@@ -67,10 +67,10 @@ button:hover{
     padding: 0px 10px;
 }
 
-div.item-login .sub-item:hover {
+.sub-item:hover {
   background-color: var(--backgroundcolorHover);
 }
 
-.sub-item-login{
+.login{
     border-right: 1px solid white;
 }

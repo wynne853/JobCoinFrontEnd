@@ -35,6 +35,13 @@ export class NavBarComponent implements OnInit {
 
   constructor(private RouterInstance:Router,private CredentialServiceInstance:CredentialService) {
   }
+
+  logout(){
+    this.CredentialServiceInstance.logout();
+    this.authenticationStatus = false;
+    this.userName = '';
+    this.isEmployer = false; 
+  }
   
   ngOnInit() {
     this.CredentialServiceInstance.loadCreddential();
