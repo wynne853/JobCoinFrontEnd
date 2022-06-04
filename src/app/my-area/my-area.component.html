@@ -5,7 +5,7 @@
             <span>Vagas Favoritas</span>
         </ng-template>
         <div>
-            <app-search></app-search>
+            <app-search [botaoAdicionar]="!isEmployee" searchType="f"></app-search>
         </div>
     </p-tabPanel>
     <p-tabPanel header="Minhas vagas">
@@ -14,7 +14,7 @@
             <span>Minhas vagas</span>
         </ng-template>
         <div>
-            <app-search></app-search>
+            <app-search [botaoAdicionar]="true" searchType="m"></app-search>
         </div>
     </p-tabPanel>
 </p-tabView>

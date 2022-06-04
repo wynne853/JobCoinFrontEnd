@@ -1,35 +1,31 @@
 <section>
-    <p-dataView #dv [value]="jobOpportunitys" [paginator]="true" [rows]="maxAnswerRowNumber" filterBy="name"
+    <p-dataView #dv [value]="jobOpportunitys" [paginator]="true" [rows]="maxAnswerRowNumber"
         [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
         <ng-template pTemplate="header">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
                 <p-dropdown [options]="sortOptions" placeholder="Ordenar por salário" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
                 <span class="p-input-icon-left p-mb-5 p-mb-md-0" style="padding-left: 10px; padding-right: 10px;">
                     <i style="padding-left: 10px;" class="pi pi-search"></i>
-                    <input type="search" pInputText placeholder="Palavra chave">
+                    <input type="search" [(ngModel)]="filterKeyWord" pInputText placeholder="Palavra chave">
                 </span>
-                <!-- <p-button icon="pi pi-search" label="Buscar"></p-button> -->
-                <button pButton type="button" icon="pi pi-search" label="Buscar" class="p-button-help" class="p-button-help"></button>
-                <div style="margin-top: 10px;">
-                  <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
-                </div>
+                <p-inputNumber placeholder="Salário Bruto Maior que" [(ngModel)]="filterValueBiggerThan" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                <p-inputNumber placeholder="Salário Bruto menor que" [(ngModel)]="filterValueLessThan" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                <button pButton type="button" icon="pi pi-search" label="Buscar" class="p-button-help" (click)="search()"></button>
+                <button *ngIf="botaoAdicionar" pButton type="button" icon="pi pi-plus" label="Nova" class="p-button-help" (click)="changeShowDialogAddJob(true)"></button>
             </div>
         </ng-template>
-
-
-
         <ng-template let-jobOpportunity pTemplate="gridItem">
-            <p-card header="{{jobOpportunity.nomeVaga}}" subheader="${{jobOpportunity.valorVaga}}" [style]="{maxWidth: '300px', padding: '30px', margin: '20px', border: '1px solid', color:'blueviolet'}" styleClass="p-card-shadow">
-                <div style="margin-top: 20px;">
-                  <p>{{jobOpportunity.descricaoVaga}}</p>
-                </div>
-                <ng-template pTemplate="footer">
-                  <div style="display:flex; justify-content: end;">
-                    <!-- <p-button icon="pi pi-star"></p-button> -->
-                    <button pButton type="button" icon="pi pi-star" class="p-button-help" class="p-button-help"></button>
-                  </div>
-                </ng-template>
-            </p-card>
+                <p-card header="{{jobOpportunity.nomeVaga}}" subheader="${{jobOpportunity.valorVaga}}" [style]="{display: 'inline-block',width: '300px', padding: '20px', margin: '15px', border: '1px solid', color:'blueviolet'}" styleClass="p-card-shadow">
+                    <div style="margin-top: 20px;">
+                        <p>{{jobOpportunity.descricaoVaga}}</p>
+                    </div>
+                    <ng-template pTemplate="footer">
+                        <div style="display:flex; justify-content: end;">
+                            <button *ngIf="authenticationStatus" pButton type="button" icon="pi pi-star" class="p-button-help" class="p-button-help"></button>
+                        </div>
+                    </ng-template>
+                </p-card>
         </ng-template>
     </p-dataView>
 </section>
+<app-dialog-addjob  [displayDialogAddJob]="displayDialogAddJob" (changeShowDialogAddJob)="changeShowDialogAddJob($event)"></app-dialog-addjob>

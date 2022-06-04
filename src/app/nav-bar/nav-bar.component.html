@@ -1,14 +1,14 @@
-<nav>
+<nav style="position: sticky;top: 0;z-index:10000">
     <div class="logo">
         <em style="color: white;"><span style="color: yellow;">J</span>ob<span style="color: yellow;">C</span>oin</em>
     </div>
-    <div class="item" style="padding: 10px; display: flex; justify-content: center; align-items: center;">
+    <div [style]="{display: !isEmployer ? 'flex' : 'none'}" class="item" style="padding: 10px; display: flex; justify-content: center; align-items: center;">
         <a style="text-decoration: none; color: white;" routerLink="/busca" routerLinkActive="active"><i class="pi pi-search" style="font-size: 1.5rem;color:white;"></i> Buscar</a>
     </div>
     <div [style]="{display: userName ? 'flex' : 'none'}" class="item" style="padding: 10px; display: flex; justify-content: center; align-items: center;">
         <a style="text-decoration: none; color: white;" routerLink="/minhaArea" routerLinkActive="active"><i class="pi pi-home" style="font-size: 1.5rem;color:white"></i> Minha Área</a>
     </div>
-    <div class="item">
+    <div class="item" [style]="{display: !isEmployer ? 'flex' : 'none'}">
         <button (click)="changeShowDialogCalculator(true)"><i class="pi pi-money-bill" style="font-size: 1.5rem;color:white; margin-top: 5px;"></i><span style="font-size: 1rem;color:white; cursor: pointer;"> Salário Líquido</span></button>
     </div>
     <div class="item-login">

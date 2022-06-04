@@ -32,6 +32,7 @@ import {ToastModule} from 'primeng/toast';
 import {PasswordModule} from 'primeng/password';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {CardModule} from 'primeng/card';
+import { DialogADDJobComponent } from './dialog-addjob/dialog-addjob.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {CardModule} from 'primeng/card';
     RegisterUserComponent,
     DialogCalculatorComponent,
     DialogLoginComponent,
-    MainComponent
+    MainComponent,
+    DialogADDJobComponent
   ],
   imports: [
     BrowserAnimationsModule,

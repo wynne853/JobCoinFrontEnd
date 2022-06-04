@@ -26,10 +26,8 @@
         <i class="pi pi-spin pi-spinner" style="font-size: 2rem;"></i>
     </div>
     <ng-template pTemplate="footer">
-        <!-- <p-button icon="pi pi-check" [disabled]="spinnerLoading" (click)="login()" label="Logar" class="p-button-help"></p-button> -->
         <button pButton type="button" icon="pi pi-check" [disabled]="spinnerLoading" (click)="login()" label="Logar" class="p-button-help" class="p-button-help"></button>
-        <button pButton type="button" icon="pi pi-check" [disabled]="spinnerLoading" (click)="closeDialog()" label="Cancelar" class="p-button-help" class="p-button-help"></button>
-        <!-- <p-button icon="pi pi-times" [disabled]="spinnerLoading" (click)="closeDialog()" label="Cancelar" class="p-button-help"></p-button> -->
+        <button pButton type="button" icon="pi pi-times" [disabled]="spinnerLoading" (click)="closeDialog()" label="Cancelar" class="p-button-help" class="p-button-help"></button>
     </ng-template>
     <p-toast position="top-left"></p-toast>
 </p-dialog>

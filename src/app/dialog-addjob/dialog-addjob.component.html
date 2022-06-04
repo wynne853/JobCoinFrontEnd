@@ -1,0 +1,24 @@
+<p-dialog header="Adicionar Job" [(visible)]="displayDialogAddJob" [modal]="true" [style]="{width: '80vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [closable]="false">
+    <div class="div-input" style="display: flex; align-items: center; padding: 10px;">
+        <div >
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText [(ngModel)]="title"> 
+                <label for="float-input">Título</label>
+            </span>
+        </div>
+        <div >
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText [(ngModel)]="description"> 
+                <label for="float-input">Descrição</label>
+            </span>
+        </div>
+        <div>
+          <p-inputNumber placeholder="Salário Bruto" [(ngModel)]="salaryInDollar" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton type="button" icon="pi pi-check" label="Salvar" class="p-button-help" class="p-button-help" (click)="createNewJob()"></button>
+        <button pButton type="button" icon="pi pi-times" label="Finalizar" class="p-button-help" class="p-button-help" (click)="closeDialog()"></button>
+    </ng-template>
+</p-dialog>

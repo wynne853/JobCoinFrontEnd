@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { CredentialService } from '../credential.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class NavBarComponent implements OnInit {
 
   authenticationStatus?:boolean;
   userName?:String;
+  isEmployer:boolean = false; 
   displayDialogLogin:boolean = false;
   displayDialogCalculator:boolean = false;
 
@@ -24,14 +26,19 @@ export class NavBarComponent implements OnInit {
 
   changeAuthenticationStatus(newAuthenticationStatus:boolean){
     this.authenticationStatus = newAuthenticationStatus;
-    this.userName = this.CredentialServiceInstance.getAuthentication().userInformation.email;
+    this.userName = this.CredentialServiceInstance.getAuthentication().userInformation.given_name;
+    this.isEmployer = this.CredentialServiceInstance.getAuthentication().userInformation.role === "Empregador";
+    if(this.isEmployer){
+      this.RouterInstance.navigate(["minhaArea"]);
+    }
   }
 
-  constructor(private CredentialServiceInstance:CredentialService) {
-    this.authenticationStatus = this.CredentialServiceInstance.getAuthenticationStatus();
+  constructor(private RouterInstance:Router,private CredentialServiceInstance:CredentialService) {
   }
   
   ngOnInit() {
+    this.CredentialServiceInstance.loadCreddential();
+    this.changeAuthenticationStatus(this.CredentialServiceInstance.getAuthenticationStatus());
   }
 
 }
