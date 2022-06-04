@@ -12,10 +12,17 @@ nav{
 
 }
 
+img {
+    
+    height: 80px;
+}
+
 .logo{
     font-size: 30px;
     color: brown;
     margin: auto 15px;
+    
+   
 }
 
 .logo span{
