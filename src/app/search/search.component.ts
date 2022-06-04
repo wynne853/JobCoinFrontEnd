@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit {
     displayDialogAddJob:boolean = false;
     authenticationStatus:boolean = false;
     maxAnswerRowNumber:number = JobOpportunityService.maxAnswerRowNumber;
+    totalPages:number = 1;
     @Input() botaoAdicionar:boolean = false;
     // s - busca geral | f - busca as favoritas | m - busca minhas vagas
     @Input() searchType:string = "s";
@@ -47,6 +48,16 @@ export class SearchComponent implements OnInit {
       this.displayDialogAddJob = statusDialogAddJob;
   }
 
+
+
+  private isStarFill(usuarioAtualFavoritouVaga:boolean){
+    if(this.searchType === 'f'){
+        return true;
+    }else{
+        return usuarioAtualFavoritouVaga;
+    }
+  }
+
     showFavoriteButton(){
         if(!this.authenticationStatus){
             this.favoriteButton = false;
@@ -65,38 +76,34 @@ export class SearchComponent implements OnInit {
         }
     }
 
-    selectIconFavoriteButton(usuarioAtualFavoritouVaga:boolean){
-        let starFill = false;
-        if(this.searchType === 'f'){
-            starFill = true;
-        }else{
-            starFill = usuarioAtualFavoritouVaga;
-        }
 
-        return starFill ?'pi pi-star-fill' : 'pi pi-star';
+
+    selectIconFavoriteButton(usuarioAtualFavoritouVaga:boolean){
+        
+
+        return this.isStarFill(usuarioAtualFavoritouVaga) ?'pi pi-star-fill' : 'pi pi-star';
     }
 
-  search(){
+  search(page:number = 1){
       switch (this.searchType) {
           case "f": 
-                this.myFavoriteJobSearch();
+                this.myFavoriteJobSearch(page);
             break;
           case "m": 
-                this.myJobSearch();
+                this.myJobSearch(page);
             break;
           default: 
-                this.generalSearch();
+                this.generalSearch(page);
             break;
       }
   }
 
-  
-
-  generalSearch(){
-    this.JobOpportunityServiceInstance.getJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan).then(response =>{
+  generalSearch(page:number){
+    this.JobOpportunityServiceInstance.getJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan,page).then(response =>{
         if(response.status === 200){
               this.jobOpportunitys = response.data.itensPagina;
-              console.log(this.jobOpportunitys)
+              this.totalPages = response.data.numeroPaginas;
+              console.log(response.data);
         }else{
 
         }
@@ -105,11 +112,12 @@ export class SearchComponent implements OnInit {
     });
   }
   
-  myJobSearch(){
-    this.JobOpportunityServiceInstance.getMyJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan).then(response =>{
+  myJobSearch(page:number){
+    this.JobOpportunityServiceInstance.getMyJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan,page).then(response =>{
         if(response.status === 200){
               this.jobOpportunitys = response.data.itensPagina;
-              console.log(this.jobOpportunitys)
+              this.totalPages = response.data.numeroPaginas;
+              console.log(response.data);
         }else{
 
         }
@@ -118,12 +126,13 @@ export class SearchComponent implements OnInit {
     });
   }
   
-  myFavoriteJobSearch(){
-    this.JobOpportunityServiceInstance.getMyfavoriteJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan).then(response =>{
+  myFavoriteJobSearch(page:number){
+    this.JobOpportunityServiceInstance.getMyfavoriteJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan,page).then(response =>{
         
         if(response.status === 200){
               this.jobOpportunitys = response.data.itensPagina;
-              console.log(this.jobOpportunitys)
+              this.totalPages = response.data.numeroPaginas;
+              console.log(response.data);
         }else{
 
         }
@@ -132,28 +141,41 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  favoriteJobOpportunity(idJobOpportunity:number){
+  private favoriteJobOpportunity(idJobOpportunity:number){
     this.JobOpportunityServiceInstance.favoriteJobOpportunity(idJobOpportunity).then(response =>{
         if(response.status === 200){
-            console.log(response.data)
       }else{
 
       }
+      this.search();
     }).catch(error =>{
 
     });
   }
 
-  disfavorJobOpportunity(idJobOpportunity:number){
+  private disfavorJobOpportunity(idJobOpportunity:number){
     this.JobOpportunityServiceInstance.disfavorJobOpportunity(idJobOpportunity).then(response =>{
         if(response.status === 200){
-            console.log(response.data)
       }else{
 
       }
+      this.search();
     }).catch(error =>{
 
     });
+  }
+
+  toggleFavorite(idJobOpportunity:number,usuarioAtualFavoritouVaga:boolean = false){
+      if(this.isStarFill(usuarioAtualFavoritouVaga)){
+          this.disfavorJobOpportunity(idJobOpportunity);
+      }else{
+          this.favoriteJobOpportunity(idJobOpportunity);
+      }
+  }
+
+  changePage(event:any){
+      let page = event.page + 1 ;
+      this.search(page);
   }
 
   onSortChange(event: { value: any; }) {

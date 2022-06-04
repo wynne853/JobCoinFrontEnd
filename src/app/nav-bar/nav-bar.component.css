@@ -74,3 +74,14 @@ button:hover{
 .login{
     border-right: 1px solid white;
 }
+
+.logout:hover {
+    background-color: rgb(247, 84, 84);
+}
+
+a{
+    height: 100%;
+    display: block;
+    padding-top: 25px;
+    margin: 5px;
+}

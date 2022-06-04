@@ -2,18 +2,23 @@
     <div class="logo">
         <img src="https://i.imgur.com/0YehHoA.png">
     </div>
-    <div [style]="{display: !isEmployer ? 'flex' : 'none'}" class="item" style="padding: 10px; display: flex; justify-content: center; align-items: center;">
+    <div [style]="{display: !isEmployer ? 'flex' : 'none'}" class="item" style="display: flex; justify-content: center; align-items: center;">
         <a style="text-decoration: none; color: white;" routerLink="/busca" routerLinkActive="active"><i class="pi pi-search" style="font-size: 1.5rem;color:white;"></i> Buscar</a>
     </div>
-    <div [style]="{display: userName ? 'flex' : 'none'}" class="item" style="padding: 10px; display: flex; justify-content: center; align-items: center;">
+    <div [style]="{display: userName ? 'flex' : 'none'}" class="item" style="display: flex; justify-content: center; align-items: center;">
         <a style="text-decoration: none; color: white;" routerLink="/minhaArea" routerLinkActive="active"><i class="pi pi-home" style="font-size: 1.5rem;color:white"></i> Minha Área</a>
     </div>
-    <div class="item" [style]="{display: !isEmployer ? 'flex' : 'none'}" style="padding: 10px; display: flex; justify-content: center; align-items: center;">
+    <div class="item" [style]="{display: !isEmployer ? 'flex' : 'none'}" style="display: flex; justify-content: center; align-items: center;">
         <a style="cursor: pointer; font-size: 16px;text-decoration: none; color: white;" (click)="changeShowDialogCalculator(true)"><i class="pi pi-money-bill" style="font-size: 1.5rem;color:white; margin-top: 5px;"></i><span style="font-size: 1rem;color:white; cursor: pointer;"> Salário Líquido</span></a>
     </div>
     <div class="item-login">
-        <div class="sub-item" *ngIf="authenticationStatus; else elseBlock">
-            <a (click)="logout()" style="color: white; text-decoration: none;">{{userName}}</a>
+        <div *ngIf="authenticationStatus; else elseBlock">
+            <div class="login">
+                <p style="color: white;">{{userName}}</p>
+            </div>
+            <div class="sub-item logout">
+                <a class="" (click)="logout()" style="color: white; text-decoration: none;cursor: pointer;">Sair <i class="pi pi-sign-out" style="font-size: 0.8rem;margin-left:2px;color: white;"></i></a>
+            </div>
         </div>
         <ng-template #elseBlock>
             <div class="sub-item login">

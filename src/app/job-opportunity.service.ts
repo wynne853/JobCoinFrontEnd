@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class JobOpportunityService {
   
-  public static maxAnswerRowNumber :number = 9;
+  public static maxAnswerRowNumber :number = 6;
   private URLFavoriteJobsList = `${environment.host}/v1/vagas/favoritadas/`;
   private URLMyJobsList = `${environment.host}/v1/vagas/criadas/`;
   private URLJobsList = `${environment.host}/v1/vagas`;
@@ -21,6 +21,7 @@ export class JobOpportunityService {
   }
   
   private getToken(){
+    this.CredentialServiceInstance.loadCreddential();
     this.requestToken = `Bearer ${this.CredentialServiceInstance.getToken()}`;
   }
 
@@ -31,7 +32,7 @@ export class JobOpportunityService {
     return axios.post(this.URLNewJob,{"valorVaga":salaryInDollar,"nomeVaga":title,"descricaoVaga":description},{headers:{ "Authorization":this.requestToken }});
   }
   
-  getJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0){
+  getJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0,page:number){
     if(!this.requestToken){
       this.getToken();
     }
@@ -40,7 +41,8 @@ export class JobOpportunityService {
         "numeroItens": JobOpportunityService.maxAnswerRowNumber,
         "palavraChave":filterDescription,
         "valorMaiorQue":filterValueBiggerThan,
-        "valorMenorQue":filterValueLessThan 
+        "valorMenorQue":filterValueLessThan,
+        "pagina":page  
       },
       headers:{
         "Authorization": this.requestToken
@@ -48,7 +50,7 @@ export class JobOpportunityService {
    });
   }
 
-  getMyJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0){
+  getMyJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0,page:number){
     if(!this.requestToken){
       this.getToken();
     }
@@ -57,7 +59,8 @@ export class JobOpportunityService {
         "numeroItens": JobOpportunityService.maxAnswerRowNumber,
         "palavraChave":filterDescription,
         "valorMaiorQue":filterValueBiggerThan,
-        "valorMenorQue":filterValueLessThan 
+        "valorMenorQue":filterValueLessThan,
+        "pagina":page  
       },
       headers:{
         "Authorization": this.requestToken
@@ -65,7 +68,7 @@ export class JobOpportunityService {
    });
   }
   
-  getMyfavoriteJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0){
+  getMyfavoriteJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0,page:number){
     if(!this.requestToken){
       this.getToken();
     }
@@ -74,7 +77,8 @@ export class JobOpportunityService {
         "numeroItens": JobOpportunityService.maxAnswerRowNumber,
         "palavraChave":filterDescription,
         "valorMaiorQue":filterValueBiggerThan,
-        "valorMenorQue":filterValueLessThan 
+        "valorMenorQue":filterValueLessThan,
+        "pagina":page 
       },
       headers:{
         "Authorization": this.requestToken

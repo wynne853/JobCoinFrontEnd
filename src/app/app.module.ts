@@ -33,6 +33,7 @@ import {PasswordModule} from 'primeng/password';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {CardModule} from 'primeng/card';
 import { DialogADDJobComponent } from './dialog-addjob/dialog-addjob.component';
+import { PaginatorModule } from "primeng/paginator";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { DialogADDJobComponent } from './dialog-addjob/dialog-addjob.component';
   imports: [
     BrowserAnimationsModule,
     TabViewModule,
+    PaginatorModule,
     TableModule,
     PasswordModule,
     ToastModule,
