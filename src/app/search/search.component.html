@@ -1,6 +1,6 @@
 <section>
     <p-dataView #dv [value]="jobOpportunitys" [paginator]="false" [rows]="maxAnswerRowNumber"
-        [sortField]="sortField" [sortOrder]="sortOrder" layout="grid" [totalRecords]="20"  >
+        [sortField]="sortField" [sortOrder]="sortOrder" layout="grid" [totalRecords]="20" emptyMessage="Nenhuma vaga foi encontrada" >
         <ng-template pTemplate="header">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
                 <p-dropdown [options]="sortOptions" placeholder="Ordenar por salário" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
@@ -22,6 +22,7 @@
                     <ng-template pTemplate="footer">
                         <div style="display:flex; justify-content: end;">
                             <button *ngIf="favoriteButton" pButton type="button" icon="{{selectIconFavoriteButton(jobOpportunity.usuarioAtualFavoritouVaga || false)}}" class="p-button-help" class="p-button-help" (click)="toggleFavorite(jobOpportunity.idVaga,jobOpportunity.usuarioAtualFavoritouVaga)" ></button>
+                            <button pButton type="button" icon="pi pi-money-bill" class="p-button-help" class="p-button-help" (click)="changeShowDialogCalculator(true,jobOpportunity.valorVaga)" ></button>
                         </div>
                     </ng-template>
                 </p-card>
@@ -31,4 +32,5 @@
         </ng-template >
     </p-dataView>
 </section>
+<app-dialog-calculator [salaryInDollar]="salaryValue" [displayDialogCalculator]="displayDialogCalculator" (changeShowDialogCalculator)="changeShowDialogCalculator($event)"></app-dialog-calculator>
 <app-dialog-addjob  [displayDialogAddJob]="displayDialogAddJob" (changeShowDialogAddJob)="changeShowDialogAddJob($event)"></app-dialog-addjob>

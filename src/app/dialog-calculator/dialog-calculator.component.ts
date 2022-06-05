@@ -9,11 +9,11 @@ export class DialogCalculatorComponent implements OnInit {
 
 
   @Input() public displayDialogCalculator!: boolean;
+  @Input() public salaryInDollar!: number;
   @Output() changeShowDialogCalculator = new EventEmitter<boolean>();
 
-  public salaryInDollar!:number;
   public usingINSS = false;
-  public dolarValue:String = "";
+  public dolarValue:string = "0";
 
   public tableSalary:any[] =[];
 
@@ -22,17 +22,20 @@ export class DialogCalculatorComponent implements OnInit {
       this.dolarValue = response;
     });
   }
-
+  
   calculateNetSalary(){
-    this.SalaryCalculatorServiceInstance.calculateNetSalary(this.salaryInDollar,this.usingINSS).then(response => {
-      this.tableSalary = response;
-    });
+    if(this.salaryInDollar){
+      this.SalaryCalculatorServiceInstance.calculateNetSalary(this.salaryInDollar,this.usingINSS).then(response => {
+        this.tableSalary = response;
+      });
+    }
   }
-
+  
   closeDialog(){
     this.changeShowDialogCalculator.emit(false);
+    this.tableSalary = [];
   }
-
+  
   ngOnInit(): void {
   }
 

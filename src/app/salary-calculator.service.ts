@@ -65,8 +65,8 @@ export class SalaryCalculatorService {
    
     return {
       description:"INSS",
-      value:`R$ ${INSS.discountAmount}`,
-      procent:`${INSS.percent * 100} %`
+      value:`R$ ${INSS.discountAmount.toFixed(2)}`,
+      procent:`${(INSS.percent * 100).toFixed(2)} %`
     };
   }
   
@@ -76,15 +76,15 @@ export class SalaryCalculatorService {
 
     return {
       description:"IR",
-      value:`R$ ${IR.discountAmount}`,
-      procent:`${IR.percent * 100}%`
+      value:`R$ ${IR.discountAmount.toFixed(2)}`,
+      procent:`${(IR.percent * 100).toFixed(2)}%`
     };
   }
 
   private rowTableGrossSalary(grossSalaryInReal:number):any{
     return {
       description:"Salário Bruto",
-      value:`R$ ${grossSalaryInReal}`,
+      value:`R$ ${grossSalaryInReal.toFixed(2)}`,
       procent:"-"
     };
   }
@@ -94,7 +94,7 @@ export class SalaryCalculatorService {
     let IR = this.calculateIR(grossSalaryInReal);
     return {
       description:"Salário líquido",
-      value:`R$ ${isINSS ? grossSalaryInReal - IR.discountAmount - IR.discountAmount : grossSalaryInReal - IR.discountAmount}`,
+      value:`R$ ${(isINSS ? grossSalaryInReal - IR.discountAmount - INSS.discountAmount : grossSalaryInReal - IR.discountAmount).toFixed(2)}`,
       procent:"-"
     };
   }

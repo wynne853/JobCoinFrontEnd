@@ -1,8 +1,8 @@
-<p-dialog header="Calculadora" [(visible)]="displayDialogCalculator" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000"
+<p-dialog header="Calculadora" [(visible)]="displayDialogCalculator" [modal]="true" [style]="{width: '65vw'}" [baseZIndex]="10000"
     [draggable]="false" [resizable]="false" [closable]="false">
     <div class="div-input" style="display: flex; align-items: center; padding: 10px;">
       <div>
-        <p-inputNumber placeholder="Salário Bruto" [(ngModel)]="salaryInDollar" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+        <p-inputNumber [disabled]="!!salaryInDollar" placeholder="Salário Bruto" [(ngModel)]="salaryInDollar" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
       </div>
       <div style="display: flex; align-items: center; padding-left: 10px;">
         <p-checkbox label="INSS" [binary]="true" [(ngModel)]="usingINSS"></p-checkbox>

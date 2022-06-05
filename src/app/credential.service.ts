@@ -53,6 +53,14 @@ export class CredentialService {
   getUserId(){
     return this.authentication.userInformation?.nameid;
   }
+  
+  getUserRule(){
+    return this.authentication.userInformation?.role;
+  }
+  
+  isEmployer(){
+    return this.authentication.userInformation?.role === "Empregador";
+  }
 
   private getUserInformation(tokenJWT:string):any{
     try {

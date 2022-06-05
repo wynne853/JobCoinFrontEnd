@@ -1,14 +1,16 @@
 import { JobOpportunity } from 'src/interfaces/JobOpportunity';
 import { Component, Input, OnInit } from '@angular/core';
-import {PrimeNGConfig, SelectItem} from 'primeng/api';
+import {MessageService, PrimeNGConfig, SelectItem} from 'primeng/api';
 import { JobOpportunityService } from '../job-opportunity.service';
 import { CredentialService } from '../credential.service';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
+  providers: [MessageService]
 })
 export class SearchComponent implements OnInit {
     
@@ -27,12 +29,20 @@ export class SearchComponent implements OnInit {
     filterKeyWord!:string;
     sortOrder!: number;
     sortField!: string;
+    displayDialogCalculator:boolean = false;
+    salaryValue:number = 10;
 
-  constructor(private CredentialServiceInstance: CredentialService,private JobOpportunityServiceInstance: JobOpportunityService, private primengConfig: PrimeNGConfig) {
+    constructor(private RouterInstance:Router,private MessageServiceInstance: MessageService,private CredentialServiceInstance: CredentialService,private JobOpportunityServiceInstance: JobOpportunityService, private primengConfig: PrimeNGConfig) {}
 
-   }
+    changeShowDialogCalculator(status:boolean,salaryValue:number = 0) {
+      this.salaryValue = salaryValue;
+      this.displayDialogCalculator = status;
+      console.log(this.salaryValue)
+    }
+
 
   ngOnInit() {
+
     this.authenticationStatus = this.CredentialServiceInstance.getAuthenticationStatus();
     this.search();
     this.showFavoriteButton();
@@ -101,11 +111,12 @@ export class SearchComponent implements OnInit {
   generalSearch(page:number){
     this.JobOpportunityServiceInstance.getJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan,page).then(response =>{
         if(response.status === 200){
+            
               this.jobOpportunitys = response.data.itensPagina;
               this.totalPages = response.data.numeroPaginas;
-              console.log(response.data);
-        }else{
-
+              
+        }else{if(response.status === 204)
+          this.jobOpportunitys = [];
         }
     }).catch(error =>{
 
@@ -115,11 +126,12 @@ export class SearchComponent implements OnInit {
   myJobSearch(page:number){
     this.JobOpportunityServiceInstance.getMyJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan,page).then(response =>{
         if(response.status === 200){
+            
               this.jobOpportunitys = response.data.itensPagina;
               this.totalPages = response.data.numeroPaginas;
-              console.log(response.data);
-        }else{
-
+              
+        }else if(response.status === 204){
+          this.jobOpportunitys = [];
         }
     }).catch(error =>{
 
@@ -130,11 +142,12 @@ export class SearchComponent implements OnInit {
     this.JobOpportunityServiceInstance.getMyfavoriteJobOpportunity(this.filterKeyWord,this.filterValueBiggerThan,this.filterValueLessThan,page).then(response =>{
         
         if(response.status === 200){
+            
               this.jobOpportunitys = response.data.itensPagina;
               this.totalPages = response.data.numeroPaginas;
-              console.log(response.data);
-        }else{
-
+              
+        }else{if(response.status === 204)
+          this.jobOpportunitys = [];
         }
     }).catch(error =>{
 
