@@ -14,6 +14,7 @@ export class CredentialService {
   
   private URLLogin = `${environment.host}/v1/login`;
   private URLCreateNewUser = `${environment.host}/v1/usuarios`;
+  private URLRefreshToken = `${environment.host}/v1/refresh`;
 
   private authentication:Authenticate = { autenticado:false };
 
@@ -22,6 +23,7 @@ export class CredentialService {
     if(stringAutentication){
       this.authentication = JSON.parse(stringAutentication);
     }
+    return this.authentication;
   }
 
   login(email:String,password:String){
@@ -46,7 +48,38 @@ export class CredentialService {
     return this.authentication.autenticado;
   }
 
+  validateDateComponent(dateComponent:number){
+    if(dateComponent < 10){
+      return "0" + dateComponent;
+    }else{
+      return dateComponent;
+    }
+  }
+
+  async validateToken(){
+    let today = new Date();
+    let todayString = `${today.getFullYear()}-${this.validateDateComponent(today.getMonth() + 1)}-${this.validateDateComponent(today.getDate())} ${this.validateDateComponent(today.getHours())}:${this.validateDateComponent(today.getMinutes())}:${this.validateDateComponent(today.getSeconds())}`;
+    if(this.authentication.dataExpiracao && this.authentication.dataExpiracao <= todayString){
+      await axios.post(this.URLRefreshToken,{
+        "token": this.authentication.token,
+        "refreshToken": this.authentication.refreshToken
+      }).then(response =>{
+        if(response.status === 200){
+          this.authentication.token = response.data.token;
+          this.authentication.refreshToken = response.data.refreshToken;
+          this.authentication.dataCriacao = response.data.dataCriacao;
+          this.authentication.dataExpiracao = response.data.dataExpiracao;
+        }
+      }).catch(error =>{
+        console.error(error);
+        this.logout();
+      });
+    }
+  }
+
   getToken(){
+    // this.validateToken();
+    this.loadCreddential();
     return this.authentication.token;
   }
   

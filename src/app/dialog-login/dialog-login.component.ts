@@ -30,11 +30,10 @@ export class DialogLoginComponent implements OnInit {
       
       this.spinnerLoading = false;
       if(this.CredentialServiceInstance.getAuthenticationStatus()){
-        console.log(this.CredentialServiceInstance.getAuthentication());
         this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Logi Efetuado com sucesso'});
+        this.CredentialServiceInstance.loadCreddential();
         this.changeAuthenticationStatus.emit(true);
         this.closeDialog();
-        this.RouterInstance.navigate([""]);
       }else{
         this.messageService.add({severity:'error', summary: 'Erro', detail: 'Erro ao tentar Logar'});
       }

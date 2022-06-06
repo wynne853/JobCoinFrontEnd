@@ -26,9 +26,10 @@ export class NavBarComponent implements OnInit {
 
   changeAuthenticationStatus(newAuthenticationStatus:boolean){
     this.authenticationStatus = newAuthenticationStatus;
-    this.userName = this.CredentialServiceInstance.getAuthentication().userInformation.given_name;
-    this.isEmployer = this.CredentialServiceInstance.isEmployer();
-    if(this.isEmployer){
+    if(newAuthenticationStatus){
+      this.CredentialServiceInstance.loadCreddential();
+      this.userName = this.CredentialServiceInstance.getAuthentication()?.userInformation?.given_name;
+      this.isEmployer = this.CredentialServiceInstance.isEmployer();
       this.RouterInstance.navigate(["/minhaArea"]);
     }
   }
@@ -41,7 +42,7 @@ export class NavBarComponent implements OnInit {
     this.authenticationStatus = false;
     this.userName = '';
     this.isEmployer = false; 
-    this.RouterInstance.navigate(["/busca"]);
+    this.RouterInstance.navigate(['/logout']);
   }
   
   ngOnInit() {

@@ -8,6 +8,7 @@ const routes: Routes = [
   {path:"minhaArea",component:MyAreaComponent},
   {path:"busca",component:MainComponent},
   {path:"cadastro",component:RegisterUserComponent},
+  {path:"logout",component:MainComponent},
   {path:"**", redirectTo: '/busca'},
   { path: '', redirectTo: '/busca', pathMatch: 'full' },
 ];

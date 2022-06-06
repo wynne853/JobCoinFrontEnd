@@ -21,7 +21,6 @@ export class JobOpportunityService {
   }
   
   private getToken(){
-    this.CredentialServiceInstance.loadCreddential();
     this.requestToken = `Bearer ${this.CredentialServiceInstance.getToken()}`;
   }
 
@@ -87,8 +86,6 @@ export class JobOpportunityService {
   }
 
   favoriteJobOpportunity(idJobOpportunity:number){
-    console.log(this.requestToken)
-    console.log(idJobOpportunity)
     if(!this.requestToken){
       this.getToken();
     }

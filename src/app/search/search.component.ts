@@ -37,12 +37,10 @@ export class SearchComponent implements OnInit {
     changeShowDialogCalculator(status:boolean,salaryValue:number = 0) {
       this.salaryValue = salaryValue;
       this.displayDialogCalculator = status;
-      console.log(this.salaryValue)
     }
 
 
   ngOnInit() {
-
     this.authenticationStatus = this.CredentialServiceInstance.getAuthenticationStatus();
     this.search();
     this.showFavoriteButton();
