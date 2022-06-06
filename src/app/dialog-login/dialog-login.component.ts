@@ -29,9 +29,9 @@ export class DialogLoginComponent implements OnInit {
     this.CredentialServiceInstance.login(this.userEmail,this.userPassword).then(response =>{
       
       this.spinnerLoading = false;
+      
       if(this.CredentialServiceInstance.getAuthenticationStatus()){
         this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Logi Efetuado com sucesso'});
-        this.CredentialServiceInstance.loadCreddential();
         this.changeAuthenticationStatus.emit(true);
         this.closeDialog();
       }else{
