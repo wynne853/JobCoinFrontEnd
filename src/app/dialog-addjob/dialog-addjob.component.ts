@@ -21,7 +21,7 @@ export class DialogADDJobComponent implements OnInit {
   }
 
   createNewJob(){
-    this.JobOpportunityServiceInstance.newJob(this.title,this.description,this.salaryInDollar).then(response =>{
+    this.JobOpportunityServiceInstance.newJobOpportunity(this.title,this.description,this.salaryInDollar).then(response =>{
       if(response.statusText === 'ok'){
 
         this.closeDialog();

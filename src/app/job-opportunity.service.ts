@@ -14,27 +14,22 @@ export class JobOpportunityService {
   private URLMyJobsList = `${environment.host}/v1/vagas/criadas/`;
   private URLJobsList = `${environment.host}/v1/vagas`;
   private URLNewJob = `${environment.host}/v1/vagas`;
-  private requestToken:string;
 
-  constructor(private CredentialServiceInstance:CredentialService) { 
-    this.requestToken = `Bearer ${this.CredentialServiceInstance.getToken()}`;
-  }
+  constructor(private CredentialServiceInstance:CredentialService) {}
   
   private getToken(){
-    this.requestToken = `Bearer ${this.CredentialServiceInstance.getToken()}`;
+    return `Bearer ${this.CredentialServiceInstance.getToken()}`;
   }
 
-  newJob(title:string,description:string,salaryInDollar:number){
-    if(!this.requestToken){
-      this.getToken();
-    }
-    return axios.post(this.URLNewJob,{"valorVaga":salaryInDollar,"nomeVaga":title,"descricaoVaga":description},{headers:{ "Authorization":this.requestToken }});
+  newJobOpportunity(title:string,description:string,salaryInDollar:number){
+    return axios.post(this.URLNewJob,{"valorVaga":salaryInDollar,"nomeVaga":title,"descricaoVaga":description},{headers:{ "Authorization":this.getToken() }});
+  }
+
+  deleteJobOpportunity(title:string,description:string,salaryInDollar:number){
+    return axios.post(this.URLNewJob,{"valorVaga":salaryInDollar,"nomeVaga":title,"descricaoVaga":description},{headers:{ "Authorization":this.getToken() }});
   }
   
   getJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0,page:number){
-    if(!this.requestToken){
-      this.getToken();
-    }
     return axios.get(this.URLJobsList,{ 
       params: { 
         "numeroItens": JobOpportunityService.maxAnswerRowNumber,
@@ -44,15 +39,12 @@ export class JobOpportunityService {
         "pagina":page  
       },
       headers:{
-        "Authorization": this.requestToken
+        "Authorization": this.getToken()
       }
    });
   }
 
   getMyJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0,page:number){
-    if(!this.requestToken){
-      this.getToken();
-    }
     return axios.get(this.URLMyJobsList + this.CredentialServiceInstance.getUserId(),{ 
       params: { 
         "numeroItens": JobOpportunityService.maxAnswerRowNumber,
@@ -62,15 +54,12 @@ export class JobOpportunityService {
         "pagina":page  
       },
       headers:{
-        "Authorization": this.requestToken
+        "Authorization": this.getToken()
       }
    });
   }
   
   getMyfavoriteJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0,page:number){
-    if(!this.requestToken){
-      this.getToken();
-    }
     return axios.get(this.URLFavoriteJobsList + this.CredentialServiceInstance.getUserId(),{ 
       params: { 
         "numeroItens": JobOpportunityService.maxAnswerRowNumber,
@@ -80,26 +69,20 @@ export class JobOpportunityService {
         "pagina":page 
       },
       headers:{
-        "Authorization": this.requestToken
+        "Authorization": this.getToken()
       }
     });
   }
 
   favoriteJobOpportunity(idJobOpportunity:number){
-    if(!this.requestToken){
-      this.getToken();
-    }
-    return axios.post(`${environment.host}/v1/vagas/${idJobOpportunity}/favoritar`,{},{headers:{ "Authorization":this.requestToken }});
+    return axios.post(`${environment.host}/v1/vagas/${idJobOpportunity}/favoritar`,{},{headers:{ "Authorization":this.getToken() }});
   }
 
   disfavorJobOpportunity(idJobOpportunity:number){
-    if(!this.requestToken){
-      this.getToken();
-    }
     return axios.delete(`${environment.host}/v1/vagas/${idJobOpportunity}/desfavoritar`,{ 
       params: {},
       headers:{
-        "Authorization": this.requestToken
+        "Authorization": this.getToken()
       }
     });
   }
