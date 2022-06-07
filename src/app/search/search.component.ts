@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
     @Input() searchType:string = "s";
     sortOptions!: SelectItem[];
     favoriteButton:boolean = false;
+    deleteButton:boolean = false;
     filterValueBiggerThan!:number;
     filterValueLessThan!:number
     filterKeyWord!:string;
@@ -43,6 +44,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.authenticationStatus = this.CredentialServiceInstance.getAuthenticationStatus();
     this.search();
+    this.deleteButton = this.searchType === 'm' && this.CredentialServiceInstance.getUserRule() === "Empregado";
     this.showFavoriteButton();
       this.sortOptions = [
           {label: 'Maior Salário', value: '!valorVaga'},
@@ -54,6 +56,7 @@ export class SearchComponent implements OnInit {
 
   changeShowDialogAddJob(statusDialogAddJob:boolean){
       this.displayDialogAddJob = statusDialogAddJob;
+      this.search();
   }
 
 
@@ -154,6 +157,18 @@ export class SearchComponent implements OnInit {
 
   private favoriteJobOpportunity(idJobOpportunity:number){
     this.JobOpportunityServiceInstance.favoriteJobOpportunity(idJobOpportunity).then(response =>{
+        if(response.status === 200){
+      }else{
+
+      }
+      this.search();
+    }).catch(error =>{
+
+    });
+  }
+
+  deleteJobOpportunity(idJobOpportunity:string){
+    this.JobOpportunityServiceInstance.deleteJobOpportunity(idJobOpportunity).then(response =>{
         if(response.status === 200){
       }else{
 

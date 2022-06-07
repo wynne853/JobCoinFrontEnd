@@ -22,7 +22,7 @@ export class DialogADDJobComponent implements OnInit {
 
   createNewJob(){
     this.JobOpportunityServiceInstance.newJobOpportunity(this.title,this.description,this.salaryInDollar).then(response =>{
-      if(response.statusText === 'ok'){
+      if(response.status === 201){
 
         this.closeDialog();
       }else{

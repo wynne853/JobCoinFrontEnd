@@ -12,8 +12,7 @@ export class JobOpportunityService {
   public static maxAnswerRowNumber :number = 6;
   private URLFavoriteJobsList = `${environment.host}/v1/vagas/favoritadas/`;
   private URLMyJobsList = `${environment.host}/v1/vagas/criadas/`;
-  private URLJobsList = `${environment.host}/v1/vagas`;
-  private URLNewJob = `${environment.host}/v1/vagas`;
+  private URLJobOpportunity = `${environment.host}/v1/vagas`;
 
   constructor(private CredentialServiceInstance:CredentialService) {}
   
@@ -22,15 +21,19 @@ export class JobOpportunityService {
   }
 
   newJobOpportunity(title:string,description:string,salaryInDollar:number){
-    return axios.post(this.URLNewJob,{"valorVaga":salaryInDollar,"nomeVaga":title,"descricaoVaga":description},{headers:{ "Authorization":this.getToken() }});
+    return axios.post(this.URLJobOpportunity,{"valorVaga":salaryInDollar,"nomeVaga":title,"descricaoVaga":description},{headers:{ "Authorization":this.getToken() }});
   }
 
-  deleteJobOpportunity(title:string,description:string,salaryInDollar:number){
-    return axios.post(this.URLNewJob,{"valorVaga":salaryInDollar,"nomeVaga":title,"descricaoVaga":description},{headers:{ "Authorization":this.getToken() }});
+  deleteJobOpportunity(id:string){
+    return axios.delete(`${this.URLJobOpportunity}/${id}` ,{
+      headers:{
+        "Authorization": this.getToken()
+      }
+   });
   }
   
   getJobOpportunity(filterDescription:string = "",filterValueBiggerThan:number = 0,filterValueLessThan:number = 0,page:number){
-    return axios.get(this.URLJobsList,{ 
+    return axios.get(this.URLJobOpportunity,{ 
       params: { 
         "numeroItens": JobOpportunityService.maxAnswerRowNumber,
         "palavraChave":filterDescription,
