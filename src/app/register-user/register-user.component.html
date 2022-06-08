@@ -1,33 +1,35 @@
 <div class="div-register-user">
   <div style="">
     <img src="https://i.imgur.com/YYZN0i8.png">
-      <div>
+      <div style="margin-top: 30px;">
         <span class="p-float-label" >
           <input id="nome-input" [(ngModel)]="name" type="text" pInputText style="width: 222px;">
           <label for="nome-input">Nome Completo</label>
         </span>
       </div>
-      <div>
+      <div style="margin-top: 30px;">
         <span class="p-float-label">
           <input id="email-input" [(ngModel)]="email" type="text" pInputText style="width: 222px;">
           <label for="email-input">Email</label>
         </span>
       </div>
-      <div>
+      <div style="margin-top: 30px;">
         <span class="p-float-label">
           <p-password id="password-input" [(ngModel)]="password" [toggleMask]="true" [feedback]="false"></p-password>
           <label for="password-input">Password</label>
         </span>
       </div>
-      <div style="margin: 10px;">
-          <p-radioButton value="77bf0b52-5745-4dbd-8854-68f39dc5cb91" [(ngModel)]="accountType" inputId="empregador-input"></p-radioButton>
-          <label for="empregador-input">Empregador</label>
+      <div style="display: flex; justify-content: center; margin-top: 20px; margin-left: -12px;">
+        <div style="margin: 10px;">
+            <p-radioButton value="77bf0b52-5745-4dbd-8854-68f39dc5cb91" [(ngModel)]="accountType" inputId="empregador-input"></p-radioButton>
+            <label for="empregador-input"> Empregador</label>
+        </div>
+        <div style="margin: 10px;">
+            <p-radioButton value="57a946a6-c9d5-4f65-82b6-7cdda2bec297" [(ngModel)]="accountType" inputId="empregado-input"></p-radioButton>
+            <label for="empregado-input"> Empregado</label>
+        </div>
       </div>
-      <div style="margin: 10px;">
-          <p-radioButton value="57a946a6-c9d5-4f65-82b6-7cdda2bec297" [(ngModel)]="accountType" inputId="empregado-input"></p-radioButton>
-          <label for="empregado-input">Empregado</label>
-      </div>
-      <div style="margin: 10px;">
+      <div style="margin: 10px; margin-top: 10px; margin-top: 30px; display: flex; justify-content: center;">
         <button pButton pRipple type="button" label="Cadastrar" (click)="createNewUser()"></button>
       </div>
     </div>
