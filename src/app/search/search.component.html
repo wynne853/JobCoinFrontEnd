@@ -21,9 +21,9 @@
                     </div>
                     <ng-template pTemplate="footer" style="margin-top: -20px;">
                         <div style="display:flex; justify-content: end;">
-                            <button *ngIf="favoriteButton" pButton type="button" icon="{{selectIconFavoriteButton(jobOpportunity.usuarioAtualFavoritouVaga || false)}}" class="p-button-help" class="p-button-help" (click)="toggleFavorite(jobOpportunity.idVaga,jobOpportunity.usuarioAtualFavoritouVaga)" ></button>
-                            <button *ngIf="deleteButton" pButton type="button" icon="pi pi-trash" class="p-button-help" class="p-button-help" (click)="deleteJobOpportunity(jobOpportunity.idVaga)" ></button>
-                            <button pButton type="button" icon="pi pi-money-bill" class="p-button-help" class="p-button-help" (click)="changeShowDialogCalculator(true,jobOpportunity.valorVaga)" ></button>
+                            <button id="{{'favorite-' + jobOpportunity.idVaga}}" *ngIf="favoriteButton" pButton type="button" icon="{{selectIconFavoriteButton(jobOpportunity.usuarioAtualFavoritouVaga || false)}}" class="p-button-help" class="p-button-help" (click)="toggleFavorite(jobOpportunity.idVaga,jobOpportunity.usuarioAtualFavoritouVaga)" ></button>
+                            <button id="{{'delete-' + jobOpportunity.idVaga}}" *ngIf="deleteButton" pButton type="button" icon="pi pi-trash" class="p-button-help" class="p-button-help" (click)="deleteJobOpportunity(jobOpportunity.idVaga)" ></button>
+                            <button id="{{'calculator-' + jobOpportunity.idVaga}}" pButton type="button" icon="pi pi-money-bill" class="p-button-help" class="p-button-help" (click)="changeShowDialogCalculator(true,jobOpportunity.valorVaga)" ></button>
                         </div>
                     </ng-template>
                 </p-card>
