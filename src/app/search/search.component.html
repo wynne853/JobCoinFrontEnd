@@ -8,9 +8,9 @@
                     <i style="padding-left: 10px;" class="pi pi-search"></i>
                     <input type="search" [(ngModel)]="filterKeyWord" pInputText placeholder="Palavra chave">
                 </span>
-                <p-inputNumber placeholder="Salário Bruto Maior que" [(ngModel)]="filterValueBiggerThan" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
-                <p-inputNumber placeholder="Salário Bruto menor que" [(ngModel)]="filterValueLessThan" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
-                <button pButton type="button" icon="pi pi-search" label="Buscar" class="p-button-help" (click)="search()"></button>
+                <p-inputNumber style="margin-right: 10px;" placeholder="Salário Bruto Maior que" [(ngModel)]="filterValueBiggerThan" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                <p-inputNumber style="margin-right: 10px;" placeholder="Salário Bruto menor que" [(ngModel)]="filterValueLessThan" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                <button style="padding-top: 10px;" pButton type="button" icon="pi pi-search" label="Buscar" class="p-button-help" (click)="search()"></button>
                 <button *ngIf="botaoAdicionar" pButton type="button" icon="pi pi-plus" label="Nova" class="p-button-help" (click)="changeShowDialogAddJob(true)"></button>
             </div>
         </ng-template>

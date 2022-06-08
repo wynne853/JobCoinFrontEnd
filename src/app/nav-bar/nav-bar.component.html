@@ -1,12 +1,12 @@
 <nav style="position: sticky;top: 0;z-index:10000">
     <div class="logo">
-        <img src="https://i.imgur.com/0YehHoA.png">
+        <img src="https://i.imgur.com/0YehHoA.png" width="80px" height="60px">
     </div>
-    <div [style]="{display: !isEmployer ? 'flex' : 'none'}" class="item" style="display: flex; justify-content: center; align-items: center;">
+    <div [style]="{display: !isEmployer ? 'flex' : 'none'}" class="item" style="display: flex; justify-content: center; align-items: center; margin-right: 10px; margin-top: 3px;">
         <a style="text-decoration: none; color: white;" routerLink="/busca" routerLinkActive="active"><i class="pi pi-search" style="font-size: 1.5rem;color:white;"></i> Buscar</a>
     </div>
     <div [style]="{display: userName ? 'flex' : 'none'}" class="item" style="display: flex; justify-content: center; align-items: center;">
-        <a style="text-decoration: none; color: white;" routerLink="/minhaArea" routerLinkActive="active"><i class="pi pi-home" style="font-size: 1.5rem;color:white"></i> Minha Área</a>
+        <a style="text-decoration: none; color: white; margin-top: -10px;" routerLink="/minhaArea" routerLinkActive="active"><i class="pi pi-home" style="font-size: 1.5rem;color:white"></i> Minha Área</a>
     </div>
     <div class="item" [style]="{display: !isEmployer ? 'flex' : 'none'}" style="display: flex; justify-content: center; align-items: center;">
         <a style="cursor: pointer; font-size: 16px;text-decoration: none; color: white;" (click)="changeShowDialogCalculator(true)"><i class="pi pi-money-bill" style="font-size: 1.5rem;color:white; margin-top: 5px;"></i><span style="font-size: 1rem;color:white; cursor: pointer;"> Salário Líquido</span></a>
@@ -21,10 +21,10 @@
             </div>
         </div>
         <ng-template #elseBlock>
-            <div class="sub-item login">
+            <div class="sub-item login" style="margin-top: 5px;">
                 <a (click)="changeShowDialogLogin(true)" style="cursor: pointer; font-size: 16px;text-decoration: none; color: white;">Login <i class="pi pi-sign-in" style="font-size: 0.8rem;margin-left:2px;color: white;"></i></a>
             </div>
-            <div class="sub-item">
+            <div class="sub-item" style="margin-top: 5px;">
                 <a routerLink="/cadastro" routerLinkActive="active" style="color: white; text-decoration: none;">Cadastre-se</a>
             </div>
         </ng-template>
