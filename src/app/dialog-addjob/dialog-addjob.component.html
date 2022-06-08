@@ -1,13 +1,13 @@
-<p-dialog header="Adicionar Job" [(visible)]="displayDialogAddJob" [modal]="true" [style]="{width: '80vw'}" [baseZIndex]="10000"
+<p-dialog header="Adicionar Job" [(visible)]="displayDialogAddJob" [modal]="true" [style]="{width: '45vw'}" [baseZIndex]="10000"
     [draggable]="false" [resizable]="false" [closable]="false">
     <div class="div-input" style="display: flex; align-items: center; padding: 10px;">
-        <div >
+        <div>
             <span class="p-float-label">
                 <input id="float-input" type="text" pInputText [(ngModel)]="title"> 
                 <label for="float-input">Título</label>
             </span>
         </div>
-        <div >
+        <div style="margin-right: 10px; margin-left: 10px;">
             <span class="p-float-label">
                 <input id="float-input" type="text" pInputText [(ngModel)]="description"> 
                 <label for="float-input">Descrição</label>

@@ -11,15 +11,15 @@
                 <p-inputNumber style="margin-right: 10px;" placeholder="Salário Bruto Maior que" [(ngModel)]="filterValueBiggerThan" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
                 <p-inputNumber style="margin-right: 10px;" placeholder="Salário Bruto menor que" [(ngModel)]="filterValueLessThan" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
                 <button style="padding-top: 10px;" pButton type="button" icon="pi pi-search" label="Buscar" class="p-button-help" (click)="search()"></button>
-                <button *ngIf="botaoAdicionar" pButton type="button" icon="pi pi-plus" label="Nova" class="p-button-help" (click)="changeShowDialogAddJob(true)"></button>
+                <button  style="margin-left: 10px; padding-top: 10px;" *ngIf="botaoAdicionar" pButton type="button" icon="pi pi-plus" label="Nova" class="p-button-help" (click)="changeShowDialogAddJob(true)"></button>
             </div>
         </ng-template>
         <ng-template let-jobOpportunity pTemplate="gridItem">
                 <p-card header="{{jobOpportunity.nomeVaga}}" subheader="${{jobOpportunity.valorVaga}}" [style]="{display: 'inline-block',width: '300px', padding: '20px', margin: '15px', border: '1px solid', color:'#8a2be2'}" styleClass="p-card-shadow">
-                    <div style="margin-top: 20px;">
-                        <p>{{jobOpportunity.descricaoVaga}}</p>
+                    <div style="margin-top: 20px; border-bottom: 1px solid #e9e9e9;  border-top: 1px solid #e9e9e9; margin-bottom: 10px;">
+                        <p style="margin-bottom: 20px; margin-top: 20px;">{{jobOpportunity.descricaoVaga}}</p>
                     </div>
-                    <ng-template pTemplate="footer">
+                    <ng-template pTemplate="footer" style="margin-top: -20px;">
                         <div style="display:flex; justify-content: end;">
                             <button *ngIf="favoriteButton" pButton type="button" icon="{{selectIconFavoriteButton(jobOpportunity.usuarioAtualFavoritouVaga || false)}}" class="p-button-help" class="p-button-help" (click)="toggleFavorite(jobOpportunity.idVaga,jobOpportunity.usuarioAtualFavoritouVaga)" ></button>
                             <button *ngIf="deleteButton" pButton type="button" icon="pi pi-trash" class="p-button-help" class="p-button-help" (click)="deleteJobOpportunity(jobOpportunity.idVaga)" ></button>
